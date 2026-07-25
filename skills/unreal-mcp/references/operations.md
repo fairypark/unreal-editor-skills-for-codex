@@ -25,7 +25,7 @@ Keep the default enabled for ordinary Codex use because it reduces initial conte
 
 | Symptom | Recovery |
 |---|---|
-| Server absent or `list_toolsets` fails | Start the Editor and run `ModelContextProtocol.StartServer 8008` for the bundled configuration; inspect the Output Log. |
+| Server absent or `list_toolsets` fails | Start the Editor and run `ModelContextProtocol.StartServer` for the default port, or pass the configured custom port; inspect the Output Log. |
 | Port already in use | Change `ServerPortNumber`, restart the Editor, and update `.mcp.json` or `.codex/config.toml`. |
 | Expected toolset missing | Run `ModelContextProtocol.RefreshTools`; then verify the corresponding Unreal plugin is enabled. |
 | Calls hang or fail | Wait for compilation or level loading; stop PIE when using Editor-only tools. |

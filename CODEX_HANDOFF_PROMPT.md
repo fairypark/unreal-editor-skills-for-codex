@@ -17,22 +17,23 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
 ## 현재 상태
 
 - 플러그인 이름: `unreal-editor-skills-for-codex`
-- 기본 버전: `0.1.0`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
+- 기본 버전: `0.1.1`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
 - 개인 마켓플레이스 이름: `personal`
 - 개인 마켓플레이스 엔트리:
   `unreal-editor-skills-for-codex@personal`
 - 마켓플레이스의 로컬 소스 경로는 새 프로젝트를 가리키도록 연결되어 있다.
 - Codex Plugin 및 Skill 정적 검증을 통과했다.
 - 세션 훅은 `.uproject`와 프로젝트별 `.codex/config.toml`을 감지하도록 시험했다.
-- Unreal Engine 5.8과 포트 `8008`에서 MCP 초기화, 세 메타 도구, Toolset 탐색,
-  Agent Skill 조회, 현재 레벨 및 Actor 읽기 전용 라이브 시험을 통과했다.
+- Unreal Engine 5.8과 프로젝트별 포트 `8008` 오버라이드에서 MCP 초기화, 세 메타 도구,
+  Toolset 탐색, Agent Skill 조회, 현재 레벨 및 Actor 읽기 전용 라이브 시험을 통과했다.
+- 공개 플러그인의 기본 MCP 포트는 Unreal 공식 기본값인 `8000`이다.
 
 ## 주요 구성
 
 - `.codex-plugin/plugin.json`
   - Codex 플러그인 매니페스트와 starter prompts
 - `.mcp.json`
-  - `http://127.0.0.1:8008/mcp`의 `unreal-mcp` 서버 연결
+  - `http://127.0.0.1:8000/mcp`의 `unreal-mcp` 서버 연결
 - `hooks/unreal-context.ps1`
   - Unreal 프로젝트와 엔진 소스 트리를 감지하여 세션 컨텍스트 제공
 - `skills/unreal-mcp`
@@ -64,8 +65,8 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
    `codex plugin add unreal-editor-skills-for-codex@personal`로 재설치한다.
 5. 플러그인을 재설치한 뒤에는 새 Codex 작업에서 로딩 상태를 확인한다.
 6. 라이브 시험 시 Unreal Editor에서 Model Context Protocol 플러그인과 필요한 Toolset을
-   활성화하고 `ModelContextProtocol.StartServer 8008`로 MCP 서버를 시작한 후,
-   읽기 전용 조회부터 시험한다.
+   활성화하고 `ModelContextProtocol.StartServer`로 MCP 서버를 시작한 후 읽기 전용
+   조회부터 시험한다. 프로젝트가 다른 포트를 사용하면 해당 포트를 명시한다.
 
 이전 작업의 핵심 판단은 “일반적인 파일 편집만으로도 Unreal 작업은 가능하지만, 반복적인
 에디터 조작에서는 MCP 기반 도구 탐색, 저장·검증 규칙, 순차 실행 지침을 플러그인으로

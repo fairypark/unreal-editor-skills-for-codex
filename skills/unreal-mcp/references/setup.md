@@ -24,7 +24,7 @@ Confirm the target `.uproject` path before editing it. Ensure its `Plugins` arra
 Start it for the current session from the Unreal console:
 
 ```text
-ModelContextProtocol.StartServer 8008
+ModelContextProtocol.StartServer
 ```
 
 For per-user auto-start, add this to:
@@ -41,11 +41,11 @@ bAutoStartServer=True
 The default endpoint is `http://127.0.0.1:8000/mcp`. Optional settings are:
 
 ```ini
-ServerPortNumber=8008
+ServerPortNumber=8000
 ServerUrlPath=/mcp
 ```
 
-Unreal's default endpoint uses port `8000`. This plugin intentionally bundles port `8008`; keep this setting and the Codex MCP URL matched. Use another port when required by the local environment.
+This plugin bundles Unreal's default port `8000`. Use another port when required by the local environment, and keep the Unreal setting and the effective Codex MCP URL matched.
 
 ## 3. Configure Codex
 
@@ -58,6 +58,13 @@ ModelContextProtocol.GenerateClientConfig Codex
 The command writes project-scoped `.codex/config.toml` for Codex. It refuses to overwrite an existing file; merge the server entry manually in that case.
 
 A minimal manual entry is:
+
+```toml
+[mcp_servers.unreal-mcp]
+url = "http://127.0.0.1:8000/mcp"
+```
+
+For a project-specific custom port, override the same server name in the target project's `.codex/config.toml`:
 
 ```toml
 [mcp_servers.unreal-mcp]
