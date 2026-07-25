@@ -1,10 +1,12 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.1.1+codex.20260725015532",
+  "version": "0.1.2+codex.20260725022159",
   "description": "Control and extend a live Unreal Editor through MCP with Codex-ready workflows.",
   "author": {
     "name": "Community Maintainers"
   },
+  "homepage": "https://github.com/fairypark/unreal-editor-skills-for-codex",
+  "repository": "https://github.com/fairypark/unreal-editor-skills-for-codex",
   "license": "MIT",
   "keywords": [
     "unreal-engine",
