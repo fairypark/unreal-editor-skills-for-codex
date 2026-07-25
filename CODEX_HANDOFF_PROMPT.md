@@ -17,7 +17,10 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
 ## 현재 상태
 
 - 플러그인 이름: `unreal-editor-skills-for-codex`
-- 기본 버전: `0.1.1`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
+- 기본 버전: `0.1.2`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
+- 공개 마켓플레이스 이름: `fairypark`
+- 공개 마켓플레이스 엔트리:
+  `unreal-editor-skills-for-codex@fairypark`
 - 개인 마켓플레이스 이름: `personal`
 - 개인 마켓플레이스 엔트리:
   `unreal-editor-skills-for-codex@personal`

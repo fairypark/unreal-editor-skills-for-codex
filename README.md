@@ -4,6 +4,24 @@ Community-maintained Codex workflows for controlling and extending a live Unreal
 
 This project adapts Epic Games' MIT-licensed `unreal-engine-skills-for-claude-code-plugin` for Codex. It contains Codex skills, MCP wiring, and a Windows-native project-context hook. It does not bundle Unreal Engine code, `ModelContextProtocol`, or `AllToolsets`.
 
+## Install
+
+Add the Fairypark marketplace and install the plugin:
+
+```powershell
+codex plugin marketplace add fairypark/unreal-editor-skills-for-codex
+codex plugin add unreal-editor-skills-for-codex@fairypark
+```
+
+Fully quit and restart the Codex or ChatGPT desktop app after installation. Start a new Codex task in the Unreal project so the installed skills, MCP connection, and session hook are loaded.
+
+To update an existing installation:
+
+```powershell
+codex plugin marketplace upgrade fairypark
+codex plugin add unreal-editor-skills-for-codex@fairypark
+```
+
 ## Included skills
 
 - `unreal-mcp`: inspect and mutate a live Unreal Editor safely.
