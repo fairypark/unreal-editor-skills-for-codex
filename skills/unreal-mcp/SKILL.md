@@ -16,7 +16,7 @@ Use the live Editor instead of giving the user manual UI instructions whenever a
 
 The Codex host may namespace MCP tool names. Search for the three meta-tools rather than assuming an exact host prefix.
 
-If the meta-tools are absent or initialization fails, do not pretend the Editor is connected. Ask the user to start Unreal Editor and run `ModelContextProtocol.StartServer 8008` for the bundled configuration, then read [references/setup.md](references/setup.md) if the project has not been configured.
+If the meta-tools are absent or initialization fails, do not pretend the Editor is connected. Ask the user to start Unreal Editor and run `ModelContextProtocol.StartServer`, then read [references/setup.md](references/setup.md) if the project has not been configured.
 
 ## Apply hard safety constraints
 

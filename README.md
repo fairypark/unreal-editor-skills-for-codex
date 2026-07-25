@@ -17,10 +17,23 @@ This project adapts Epic Games' MIT-licensed `unreal-engine-skills-for-claude-co
 3. Unreal Editor running with the server started:
 
    ```text
-   ModelContextProtocol.StartServer 8008
+   ModelContextProtocol.StartServer
    ```
 
-Unreal's default MCP port is `8000`. This plugin bundles `http://127.0.0.1:8008/mcp` to avoid a local port conflict. If you use another port or path, keep the Unreal server settings and `.mcp.json` in sync.
+The bundled MCP connection uses Unreal's default endpoint, `http://127.0.0.1:8000/mcp`.
+
+If port `8000` is unavailable, start the server on another port and add a project-scoped override. For example:
+
+```text
+ModelContextProtocol.StartServer 8008
+```
+
+```toml
+[mcp_servers.unreal-mcp]
+url = "http://127.0.0.1:8008/mcp"
+```
+
+Keep the Unreal server port and the effective Codex MCP URL in sync.
 
 ## Verify
 
@@ -29,7 +42,7 @@ Unreal's default MCP port is `8000`. This plugin bundles `http://127.0.0.1:8008/
 3. Ask: `List the actors in the current level.`
 4. Confirm that Codex discovers the Unreal toolsets and returns live Editor state.
 
-The bundled configuration was live-tested with Unreal Engine 5.8 on port `8008`: MCP initialization, all three meta-tools, toolset discovery, project Agent Skill discovery, current-level lookup, and a read-only actor query completed successfully.
+The workflow was live-tested with Unreal Engine 5.8 using a project-scoped port `8008` override: MCP initialization, all three meta-tools, toolset discovery, project Agent Skill discovery, current-level lookup, and a read-only actor query completed successfully. The published default remains Unreal's port `8000`.
 
 ## Safety
 
