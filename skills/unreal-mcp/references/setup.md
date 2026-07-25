@@ -64,12 +64,7 @@ A minimal manual entry is:
 url = "http://127.0.0.1:8000/mcp"
 ```
 
-For a project-specific custom port, override the same server name in the target project's `.codex/config.toml`:
-
-```toml
-[mcp_servers.unreal-mcp]
-url = "http://127.0.0.1:8008/mcp"
-```
+When a project uses a custom endpoint, override the same server name in the target project's `.codex/config.toml` and keep it matched to the Unreal server. Do not publish machine-specific endpoints in the plugin defaults.
 
 Do not keep duplicate plugin-bundled and project-scoped definitions if the host reports a name collision.
 

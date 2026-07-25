@@ -1,6 +1,6 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.1.2+codex.20260725022159",
+  "version": "0.1.3+codex.20260725042028",
   "description": "Control and extend a live Unreal Editor through MCP with Codex-ready workflows.",
   "author": {
     "name": "Community Maintainers"

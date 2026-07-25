@@ -17,7 +17,7 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
 ## 현재 상태
 
 - 플러그인 이름: `unreal-editor-skills-for-codex`
-- 기본 버전: `0.1.2`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
+- 기본 버전: `0.1.3`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
 - 공개 마켓플레이스 이름: `fairypark`
 - 공개 마켓플레이스 엔트리:
   `unreal-editor-skills-for-codex@fairypark`
@@ -27,8 +27,8 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
 - 마켓플레이스의 로컬 소스 경로는 새 프로젝트를 가리키도록 연결되어 있다.
 - Codex Plugin 및 Skill 정적 검증을 통과했다.
 - 세션 훅은 `.uproject`와 프로젝트별 `.codex/config.toml`을 감지하도록 시험했다.
-- Unreal Engine 5.8과 프로젝트별 포트 `8008` 오버라이드에서 MCP 초기화, 세 메타 도구,
-  Toolset 탐색, Agent Skill 조회, 현재 레벨 및 Actor 읽기 전용 라이브 시험을 통과했다.
+- Unreal Engine 5.8에서 MCP 초기화, 세 메타 도구, Toolset 탐색, Agent Skill 조회,
+  현재 레벨 및 Actor 읽기 전용 라이브 시험을 통과했다.
 - 공개 플러그인의 기본 MCP 포트는 Unreal 공식 기본값인 `8000`이다.
 
 ## 주요 구성
