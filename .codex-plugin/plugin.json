@@ -1,0 +1,35 @@
+{
+  "name": "unreal-editor-skills-for-codex",
+  "version": "0.1.0+codex.20260725014822",
+  "description": "Control and extend a live Unreal Editor through MCP with Codex-ready workflows.",
+  "author": {
+    "name": "Community Maintainers"
+  },
+  "license": "MIT",
+  "keywords": [
+    "unreal-engine",
+    "editor",
+    "mcp",
+    "blueprints",
+    "automation"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Unreal Editor Skills for Codex",
+    "shortDescription": "Drive Unreal Editor safely through MCP toolsets.",
+    "longDescription": "Adds workflows for live Unreal Editor control, MCP toolset authoring, and project-specific Unreal Agent Skills.",
+    "developerName": "Community Maintainers",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Use Unreal MCP to inspect the open level and summarize its actors.",
+      "Create or modify an Unreal asset and verify the result.",
+      "Design an AI-callable Unreal toolset with tests."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

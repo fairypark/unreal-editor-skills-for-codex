@@ -1,0 +1,18 @@
+{
+  "description": "Detect Unreal Engine projects and inject concise Codex context.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${PLUGIN_ROOT}/hooks/unreal-context.ps1\"",
+            "timeout": 5,
+            "statusMessage": "Detecting Unreal project context"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unreal MCP"
+  short_description: "Control a live Unreal Editor through MCP"
+  default_prompt: "Use $unreal-mcp to inspect and modify my live Unreal Editor project safely."

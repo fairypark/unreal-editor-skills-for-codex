@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Unreal Agent Skill"
+  short_description: "Author reusable in-editor Unreal Agent Skills"
+  default_prompt: "Use $unreal-skill to create or review an Unreal Engine Agent Skill."

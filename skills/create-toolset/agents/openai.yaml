@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Unreal Toolset"
+  short_description: "Build AI-callable Unreal Engine toolsets"
+  default_prompt: "Use $create-toolset to design and implement an Unreal Engine MCP toolset."
