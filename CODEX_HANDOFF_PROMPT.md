@@ -17,7 +17,7 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
 ## 현재 상태
 
 - 플러그인 이름: `unreal-editor-skills-for-codex`
-- 기본 버전: `0.1.3`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
+- 기본 버전: `0.2.0`이며 로컬 재설치 시 Codex cachebuster suffix가 추가될 수 있다.
 - 공개 마켓플레이스 이름: `fairypark`
 - 공개 마켓플레이스 엔트리:
   `unreal-editor-skills-for-codex@fairypark`
@@ -59,6 +59,12 @@ Claude Code 전용 표현을 그대로 복제하지 않고 Codex의 Plugin, Skil
 - 기존 MIT 저작권 및 제3자 고지를 보존한다.
 
 ## 작업 시작 절차
+
+동의·수집·Hook·배포 동작을 변경하기 전에 `docs/USAGE_METRICS.md`를 읽고 개인정보 계약과
+upstream 격리 원칙을 유지한다. Epic 파생 Skill과 `hooks/unreal-context.ps1`에는 지표
+로직을 넣지 않는다. 명시적 동의 전에는 수집하지 않으며 프롬프트, 응답, 경로,
+프로젝트·Actor·Asset 이름, 도구 인수·응답 원문, 원시 식별자를 저장하거나 전송하지 않는다.
+지표 또는 Hook 변경 후에는 동의·비활성화·삭제·비식별화 회귀 테스트를 실행한다.
 
 1. `README.md`, `.codex-plugin/plugin.json`, `.mcp.json`을 먼저 읽는다.
 2. 현재 파일 상태와 사용자 변경사항을 확인하고 보존한다.

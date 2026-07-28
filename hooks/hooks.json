@@ -1,5 +1,5 @@
 {
-  "description": "Detect Unreal Engine projects and inject concise Codex context.",
+  "description": "Inject Unreal project context and collect optional local-only anonymous usage metrics after consent.",
   "hooks": {
     "SessionStart": [
       {
@@ -10,6 +10,47 @@
             "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${PLUGIN_ROOT}/hooks/unreal-context.ps1\"",
             "timeout": 5,
             "statusMessage": "Detecting Unreal project context"
+          },
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${PLUGIN_ROOT}/scripts/usage-metrics.ps1\" -Action Hook",
+            "timeout": 5,
+            "statusMessage": "Checking optional local usage metrics"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__unreal[-_]mcp__.*$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${PLUGIN_ROOT}/scripts/usage-metrics.ps1\" -Action Hook",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^mcp__unreal[-_]mcp__.*$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${PLUGIN_ROOT}/scripts/usage-metrics.ps1\" -Action Hook",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"${PLUGIN_ROOT}/scripts/usage-metrics.ps1\" -Action Hook",
+            "timeout": 5
           }
         ]
       }

@@ -27,6 +27,29 @@ codex plugin add unreal-editor-skills-for-codex@fairypark
 - `unreal-mcp`: inspect and mutate a live Unreal Editor safely.
 - `create-toolset`: author AI-callable Unreal C++ or Python toolsets.
 - `unreal-skill`: create project- or plugin-specific Unreal Agent Skills.
+- `unreal-usage-metrics`: manage optional local-only usefulness metrics.
+
+## Optional local usage metrics
+
+The plugin can collect small operational signals to help evaluate whether its Unreal
+workflows are reliable and useful. Collection is off until the user explicitly opts in.
+The first-use question appears only in an Unreal project and does not delay the current task.
+
+Metrics remain on the user's device. The plugin never stores prompts, assistant messages,
+paths, project names, Actor or Asset names, tool arguments, tool response contents, or raw
+session identifiers. Events are retained for up to 90 days and can be summarized or deleted
+at any time.
+
+Ask Codex naturally:
+
+- `Enable Unreal plugin usage metrics.`
+- `Disable Unreal plugin usage metrics.`
+- `Show my Unreal plugin usage metrics summary.`
+- `Delete the stored Unreal plugin usage metrics.`
+
+Disabling stops new collection but preserves existing events. Deletion is a separate explicit
+action. See [`docs/USAGE_METRICS.md`](docs/USAGE_METRICS.md) for the complete privacy and
+maintenance contract.
 
 ## Prerequisites
 
@@ -58,3 +81,6 @@ MCP tools can modify live `UObject` state, assets, levels, and project files. Sa
 ## Attribution
 
 See `LICENSE` and `THIRD_PARTY_NOTICES.md`. This project is not affiliated with or endorsed by Epic Games, OpenAI, or Anthropic.
+
+Reusable English and Korean introduction copy is available in
+[`docs/PLUGIN_DESCRIPTION.md`](docs/PLUGIN_DESCRIPTION.md).
