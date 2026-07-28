@@ -8,7 +8,7 @@ This project is derived from:
 - Copyright (c) 2026 Epic Games, Inc.
 - Licensed under the MIT License reproduced in `LICENSE`.
 
-Codex-specific modifications include the Codex plugin manifest, bundled MCP configuration, Windows PowerShell session hook, UI metadata, and revised skill instructions.
+Codex-specific modifications include the Codex plugin manifest, bundled MCP configuration, Windows PowerShell session hooks, UI metadata, revised skill instructions, and optional consent-based local usage metrics.
 
 No Unreal Engine source code, Engine plugin binary, Epic logo, OpenAI logo, or Anthropic logo is included.
 

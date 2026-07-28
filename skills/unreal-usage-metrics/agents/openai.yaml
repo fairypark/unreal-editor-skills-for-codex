@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unreal Usage Metrics"
+  short_description: "Manage private local Unreal usage metrics"
+  default_prompt: "Use $unreal-usage-metrics to show or change my local usage-metrics preference."

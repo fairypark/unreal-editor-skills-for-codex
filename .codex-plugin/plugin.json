@@ -1,6 +1,6 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.1.3+codex.20260725042028",
+  "version": "0.2.0+codex.20260728210334",
   "description": "Control and extend a live Unreal Editor through MCP with Codex-ready workflows.",
   "author": {
     "name": "Community Maintainers"
@@ -13,13 +13,14 @@
     "editor",
     "mcp",
     "blueprints",
-    "automation"
+    "automation",
+    "metrics"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Unreal Editor Skills for Codex",
     "shortDescription": "Drive Unreal Editor safely through MCP toolsets.",
-    "longDescription": "Adds workflows for live Unreal Editor control, MCP toolset authoring, and project-specific Unreal Agent Skills.",
+    "longDescription": "Adds workflows for live Unreal Editor control, MCP toolset authoring, project-specific Unreal Agent Skills, and optional consent-based local usage metrics.",
     "developerName": "Community Maintainers",
     "category": "Developer Tools",
     "capabilities": [
