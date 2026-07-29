@@ -14,13 +14,15 @@
     "mcp",
     "blueprints",
     "automation",
+    "environment-design",
+    "pcg",
     "metrics"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Unreal Editor Skills for Codex",
     "shortDescription": "Drive Unreal Editor safely through MCP toolsets.",
-    "longDescription": "Adds workflows for live Unreal Editor control, MCP toolset authoring, project-specific Unreal Agent Skills, and optional consent-based local usage metrics.",
+    "longDescription": "Adds workflows for live Unreal Editor control, Visual Gate-first environment design, MCP toolset authoring, project-specific Unreal Agent Skills, and optional consent-based local usage metrics.",
     "developerName": "Community Maintainers",
     "category": "Developer Tools",
     "capabilities": [
@@ -31,7 +33,8 @@
     "defaultPrompt": [
       "Use Unreal MCP to inspect the open level and summarize its actors.",
       "Create or modify an Unreal asset and verify the result.",
-      "Design an AI-callable Unreal toolset with tests."
+      "Design an AI-callable Unreal toolset with tests.",
+      "Build an Unreal environment that passes the Visual Gate and 360-degree PCG biome benchmark before gameplay polish."
     ]
   },
   "mcpServers": "./.mcp.json"

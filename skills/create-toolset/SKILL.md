@@ -1,6 +1,6 @@
 ---
 name: create-toolset
-description: Create or extend Unreal Engine ToolsetRegistry toolsets exposed through unreal-mcp. Trigger when adding, exposing, or registering an AI-callable static method; creating a C++ or Python toolset; editing Toolsets folders; using UToolsetDefinition, AICallable, toolset_registry.tool_call, or ToolsetRegistry registration; or designing tool schemas and tests. Do not trigger when merely invoking existing tools, authoring an Unreal Agent Skill, or performing an unrelated refactor.
+description: Create or extend Unreal Engine ToolsetRegistry toolsets exposed through unreal-mcp. Trigger when adding, exposing, or registering an AI-callable static method; creating a C++ or Python toolset; editing Toolsets folders; using UToolsetDefinition, AICallable, toolset_registry.tool_call, or ToolsetRegistry registration; designing tool schemas and tests; or filling a missing Landscape creation, heightmap, weightmap, material, statistics, or save API. Do not trigger when merely invoking existing tools, authoring an Unreal Agent Skill, or performing an unrelated refactor.
 ---
 
 # Create an Unreal toolset
@@ -17,6 +17,8 @@ Design a small, typed, composable API for agents rather than mirroring Unreal's 
    - Prefer Python when the required APIs exist in `Intermediate/PythonStub/unreal.py`.
    - Use C++ when Python coverage is insufficient.
    - Stop and report the gap when neither surface exposes the required API.
+6. For Landscape creation, import, reimport, validation, or persistence, read [references/landscape-toolset.md](references/landscape-toolset.md). Keep environment art direction and quality gates in the environment-level-design skill; keep typed Editor mutations in the Unreal toolset.
+7. This Codex skills repository does not own a runtime Unreal extension. If the missing capability needs new C++ or Python runtime code, record the verified gap and update [../../docs/UNREAL_TOOLSETS_EXTENSION_HANDOFF.md](../../docs/UNREAL_TOOLSETS_EXTENSION_HANDOFF.md); implement it only in the separately assigned runtime project.
 
 Search the Python stub narrowly; do not load the whole generated file. Recommend enabling Python Developer Mode when the stub is missing.
 
