@@ -1,0 +1,4 @@
+interface:
+  display_name: "Environment Level Design"
+  short_description: "Build visually complete Unreal environments"
+  default_prompt: "Use $environment-level-design to build or review an Unreal environment. Pass the Visual Gate and 360-degree PCG biome quality benchmark before Gameplay Polish, then validate performance and gameplay without visual regression."

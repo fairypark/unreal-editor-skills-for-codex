@@ -2,7 +2,7 @@
 
 Community-maintained Codex workflows for controlling and extending a live Unreal Editor through MCP.
 
-This project adapts Epic Games' MIT-licensed `unreal-engine-skills-for-claude-code-plugin` for Codex. It contains Codex skills, MCP wiring, and a Windows-native project-context hook. It does not bundle Unreal Engine code, `ModelContextProtocol`, or `AllToolsets`.
+This project adapts Epic Games' MIT-licensed `unreal-engine-skills-for-claude-code-plugin` for Codex. It contains Codex skills, MCP wiring, and a Windows-native project-context hook. It does not bundle or modify Unreal Engine, `ModelContextProtocol`, `AllToolsets`, or a separate Unreal runtime extension.
 
 ## Install
 
@@ -22,12 +22,21 @@ codex plugin marketplace upgrade fairypark
 codex plugin add unreal-editor-skills-for-codex@fairypark
 ```
 
+## Runtime capability gaps
+
+This repository documents missing typed Unreal operations but does not implement
+or distribute their runtime plugin. See
+[`docs/UNREAL_TOOLSETS_EXTENSION_HANDOFF.md`](docs/UNREAL_TOOLSETS_EXTENSION_HANDOFF.md)
+for the client-neutral handoff contract. Any implementation belongs in a
+separate public repository and must not modify Epic Engine plugins.
+
 ## Included skills
 
 - `unreal-mcp`: inspect and mutate a live Unreal Editor safely.
 - `create-toolset`: author AI-callable Unreal C++ or Python toolsets.
 - `unreal-skill`: create project- or plugin-specific Unreal Agent Skills.
 - `unreal-usage-metrics`: manage optional local-only usefulness metrics.
+- `environment-level-design`: build and review visually complete Unreal environments with explicit quality gates.
 
 ## Optional local usage metrics
 

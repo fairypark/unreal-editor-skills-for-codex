@@ -38,6 +38,12 @@ For unfamiliar project work, discover project-registered Unreal Agent Skills thr
 
 These in-editor Unreal Agent Skills are distinct from Codex `SKILL.md` files.
 
+## Handle missing structured tools
+
+- Do not present a Slate workflow, generic property mutation, or programmatic Python execution as equivalent to a missing domain API.
+- For Landscape creation, heightmap or weightmap import, reimport, material assignment, height statistics, building-pad validation, or save requests, inspect official toolsets and any third-party extension actually returned by `list_toolsets`. Prefer an official typed operation when it fully satisfies the request. Never assume `LandscapeExtensionToolset` is installed. If no discovered structured tool covers the operation, report the runtime capability gap and use `$create-toolset` with its Landscape reference to update the external-project handoff contract.
+- Use Slate UI automation only for a user-approved, immediate workaround after confirming that no structured tool can perform the operation. Save before the action, keep the observed subtree minimal, and call `SlateInspectorToolset.Unobserve` in a finally-style cleanup immediately after the UI action. Verify the resulting Landscape with structured reads; UI feedback alone is not proof of success.
+
 ## References
 
 - Read [references/setup.md](references/setup.md) for first-time server setup and Codex configuration.
