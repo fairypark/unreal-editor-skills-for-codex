@@ -1,6 +1,6 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.2.0+codex.20260728210334",
+  "version": "0.2.1+codex.20260730103811",
   "description": "Control and extend a live Unreal Editor through MCP with Codex-ready workflows.",
   "author": {
     "name": "Community Maintainers"
@@ -31,6 +31,7 @@
     "defaultPrompt": [
       "Use Unreal MCP to inspect the open level and summarize its actors.",
       "Create or modify an Unreal asset and verify the result.",
+      "Verify a marketplace asset import without disturbing the active level.",
       "Design an AI-callable Unreal toolset with tests."
     ]
   },
