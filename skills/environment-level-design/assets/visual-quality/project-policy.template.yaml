@@ -1,0 +1,26 @@
+schema_version: 1
+mode: recommended
+
+roles:
+  builder_can_approve_own_stage: false
+  independent_supervisor: recommended
+
+gates:
+  stages:
+    - concept
+    - golden_slice
+    - full_level
+  required_min_score: null
+  categories: []
+  hard_failures: []
+
+evidence:
+  required_camera_roles: []
+  preserve_camera_pose: true
+  reject_editor_overlays: true
+
+project_notes:
+  genre: null
+  target_platform: null
+  performance_target: null
+  custom_rules: []

@@ -27,7 +27,23 @@ codex plugin add unreal-editor-skills-for-codex@fairypark
 - `unreal-mcp`: inspect and mutate a live Unreal Editor safely.
 - `create-toolset`: author AI-callable Unreal C++ or Python toolsets.
 - `unreal-skill`: create project- or plugin-specific Unreal Agent Skills.
+- `environment-level-design`: set up, build, and iteratively validate production-quality
+  environment levels. It supports project-owned Visual Recipes, fixed-camera evidence,
+  golden slices, and a separate read-only visual supervisor when agent delegation is available.
 - `unreal-usage-metrics`: manage optional local-only usefulness metrics.
+
+## Environment visual-quality onboarding
+
+When an environment project has no project-owned quality policy, ask Codex to set one up.
+The environment skill introduces an optional `off`, `recommended`, or `strict` workflow and
+offers minimal, sample-informed, custom, or skipped setup. It never silently overwrites
+`AGENTS.md` or treats the bundled CodexMiniArena case study as a universal preset.
+
+The case study contains only the transferable procedure and judgment structure: establish
+multi-direction concepts and fixed cameras, build a golden slice, request an independent
+verdict, repair the weakest visible system, and recapture the same cameras before expansion.
+Project-specific categories, thresholds, assets, coordinates, and art direction remain in the
+user's project files.
 
 ## Optional local usage metrics
 
@@ -73,6 +89,11 @@ If the local environment requires a custom endpoint, configure it as a project-s
 4. Confirm that Codex discovers the Unreal toolsets and returns live Editor state.
 
 The workflow was live-tested with Unreal Engine 5.8: MCP initialization, all three meta-tools, toolset discovery, project Agent Skill discovery, current-level lookup, and a read-only actor query completed successfully. The published default remains Unreal's port `8000`.
+
+For environment work, the visual supervisor receives raw references and fixed-camera evidence
+without the builder's intended verdict or self-score. The role is instruction-level read-only
+unless the runtime supplies a technically restricted tool surface. Without delegation, the
+review is labeled `self-review; not independently supervised`.
 
 ## Safety
 

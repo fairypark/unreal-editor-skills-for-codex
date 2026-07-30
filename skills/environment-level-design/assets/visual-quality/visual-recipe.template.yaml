@@ -1,0 +1,32 @@
+schema_version: 1
+recipe_id: example-level
+status: draft
+
+references:
+  primary: null
+  supporting: []
+
+visual_intent:
+  setting: null
+  emotional_tone: null
+  palette: []
+  prohibited_imagery: []
+
+focal_hierarchy: []
+zones: []
+
+fixed_cameras:
+  - id: hero
+    actor_label: null
+    role: primary comparison
+    transform:
+      location: null
+      rotation: null
+      fov: null
+    reference: null
+
+quality_gate:
+  required_min_score: null
+  categories: []
+  hard_failures: []
+  required_evidence: []

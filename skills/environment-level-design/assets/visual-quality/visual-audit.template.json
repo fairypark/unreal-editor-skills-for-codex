@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "audit_id": "example-audit",
+  "recipe_id": "example-level",
+  "stage": "golden_slice",
+  "evaluator_role": "read-only independent visual evaluator",
+  "evidence_by_camera": {},
+  "scores": {},
+  "hard_failures": [],
+  "weakest_system": null,
+  "next_change": null,
+  "verdict": "PENDING"
+}
