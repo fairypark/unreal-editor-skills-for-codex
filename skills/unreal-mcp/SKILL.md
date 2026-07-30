@@ -28,6 +28,22 @@ If the meta-tools are absent or initialization fails, do not pretend the Editor 
 - Check whether PIE is running when Editor-only asset operations behave unexpectedly; stop PIE before retrying.
 - Treat programmatic in-editor Python execution as privileged arbitrary code.
 
+## Verify marketplace asset imports
+
+When another workflow downloads or adds Fab or other marketplace content:
+
+- Determine the target project's current engine version from the live Editor or
+  `.uproject` file. Prefer that exact version; if it is unavailable, accept only
+  the newest version the marketplace explicitly shows as supported.
+- Never guess support for an unlisted engine version. Report the project version
+  and selected fallback version whenever they differ.
+- Keep the current level loaded and do not place imported assets, save the level,
+  trigger PIE, or restart the Editor unless the user separately requests it.
+- Verify that the expected content folder exists and that representative assets
+  are recognized by the Asset Registry or Content Browser.
+- Inspect relevant recent log messages for import, load, serialization, or engine
+  version warnings before reporting success.
+
 ## Load project-specific Unreal skills
 
 For unfamiliar project work, discover project-registered Unreal Agent Skills through `AgentSkillToolset`:
