@@ -11,7 +11,9 @@ Control and extend a live Unreal Editor from Codex with safe, discoverable MCP w
 Unreal Editor Skills for Codex connects Codex to a running Unreal Editor through Unreal's
 Model Context Protocol support. It helps Codex inspect levels, work with Actors and assets,
 author or extend ToolsetRegistry tools, and create project-specific Unreal Agent Skills
-while following Unreal-aware safety and verification practices.
+while following Unreal-aware safety and verification practices. It also provides an optional
+project-owned environment quality workflow with Visual Recipes, golden slices, fixed-camera
+evidence, and independent read-only visual supervision.
 
 Optional local usage metrics can help evaluate reliability and workflow quality. They are
 off until the user explicitly opts in, remain on the user's device, never store prompts,
@@ -23,7 +25,8 @@ deleted at any time.
 Unreal Editor Skills for Codex brings Epic's Unreal Engine agent workflows to Codex-native
 Plugin, Skill, MCP, and Hook structures. Connect it to a live Unreal Editor to discover
 toolsets on demand, inspect or modify Editor state, build AI-callable C++ or Python tools,
-and preserve project knowledge as Unreal Agent Skills.
+preserve project knowledge as Unreal Agent Skills, and set up repeatable environment quality
+gates without imposing one project's art direction on another.
 
 The plugin emphasizes recoverable changes, sequential game-thread calls, explicit result
 checking, and verification after mutation. Its optional usefulness metrics are consent-based
