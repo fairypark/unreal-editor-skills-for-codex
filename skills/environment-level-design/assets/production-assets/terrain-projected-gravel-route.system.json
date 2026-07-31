@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "system_id": "terrain_projected_gravel_route_v1",
+  "category": "environment_route_pcg",
+  "distribution": "dependency_free_system_contract",
+  "approval_transfer": "REVALIDATION_REQUIRED",
+  "intent": "Create one continuous width-bearing gravel route that follows trusted terrain without centerline chains, cement-like ribbons, or overlap seams.",
+  "required_inputs": [
+    "one authored spline or closed route boundary",
+    "trusted terrain surface data",
+    "small rounded gravel mesh set",
+    "restrained larger accent mesh set",
+    "route material family",
+    "path, structure, and sightline exclusions"
+  ],
+  "responsibilities": [
+    "sample route interior and feathered edge",
+    "project position and rotation to terrain",
+    "apply deterministic bounded variation",
+    "merge visible strata before one final overlap rejection",
+    "spawn decorative instances through one orchestrator"
+  ],
+  "required_parameters": [
+    "interior_spacing_centimeters",
+    "edge_spacing_centimeters",
+    "edge_jitter_centimeters",
+    "fine_gravel_scale_range",
+    "accent_scale_range",
+    "embedding_offset_centimeters",
+    "deterministic_seed",
+    "cull_distances_centimeters"
+  ],
+  "output_contract": {
+    "collision_profile": "NoCollision",
+    "overlap_events": false,
+    "affects_navigation": false,
+    "grounding": "project interior and edge samples before variation and spawn"
+  },
+  "hard_failures": [
+    "centerline stone chain",
+    "cement-like strip",
+    "overlapping independent route generators",
+    "floating stones",
+    "uniform tiled edge",
+    "incompatible source silhouette"
+  ],
+  "promotion_evidence": [
+    "route, hero, reverse, and close-contact cameras",
+    "instance, collision, navigation, coverage, and grounding audit",
+    "independent scores of at least 4/5 with no hard failure"
+  ]
+}
