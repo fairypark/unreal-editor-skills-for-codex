@@ -1,5 +1,7 @@
 # Reusable Production Assets
 
+한국어 안내: [재사용 가능한 생산 자산 사용 안내](reusable-production-assets.ko.md)
+
 Turn successful scene work into assets that can survive another level, project,
 team, or user without copying private content or transferring visual approval.
 

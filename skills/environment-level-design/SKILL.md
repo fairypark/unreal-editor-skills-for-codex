@@ -11,7 +11,7 @@ Build an environment as a playable place, not a camera-facing diorama. Treat eve
 
 - Read [quality-gates.md](references/quality-gates.md) for every build or review.
 - Read [visual-first-production-legacy.md](references/visual-first-production-legacy.md) for every build, rebuild, or review so new work inherits proven visual-first decisions without copying project-specific values.
-- Read [reusable-production-assets.md](references/reusable-production-assets.md) when preserving, promoting, packaging, installing, or reusing production assets across levels, projects, teams, or users.
+- Read [reusable-production-assets.md](references/reusable-production-assets.md) when preserving, promoting, packaging, installing, or reusing production assets across levels, projects, teams, or users. When the user prefers Korean or asks for a human-readable Korean guide, also provide [reusable-production-assets.ko.md](references/reusable-production-assets.ko.md).
 - Read [independent-visual-supervision.md](references/independent-visual-supervision.md) for every multi-system level build, rebuild, dressing pass, visual-quality recovery, golden slice, or full-level acceptance review.
 - Read [visual-quality-onboarding.md](references/visual-quality-onboarding.md) when setting up a new Unreal project, when no project-owned visual policy exists, or when the user asks about Visual Recipes or quality-gate adoption.
 - Read [codex-mini-arena-case-study.md](references/codex-mini-arena-case-study.md) only when an onboarding decision benefits from a compact worked example. Treat it as a procedural case study, never as a preset.

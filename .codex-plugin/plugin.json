@@ -1,6 +1,6 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Control and extend a live Unreal Editor and build polished environments through Codex-ready workflows.",
   "author": {
     "name": "Community Maintainers"
