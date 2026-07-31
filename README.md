@@ -45,6 +45,11 @@ verdict, repair the weakest visible system, and recapture the same cameras befor
 Project-specific categories, thresholds, assets, coordinates, and art direction remain in the
 user's project files.
 
+한국어 생산 자산 안내는
+[`재사용 가능한 생산 자산 사용 안내`](skills/environment-level-design/references/reusable-production-assets.ko.md)에서
+확인할 수 있습니다. 설치 방법, 자갈길과 수생 식생 계약의 적용 순서, 재검증 및
+UAsset 배포 범위를 한국어로 설명합니다.
+
 ## Optional local usage metrics
 
 The plugin can collect small operational signals to help evaluate whether its Unreal

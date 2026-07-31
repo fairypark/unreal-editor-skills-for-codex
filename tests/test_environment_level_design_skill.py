@@ -28,6 +28,9 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         self.production_assets = (
             SKILL_ROOT / "references" / "reusable-production-assets.md"
         ).read_text(encoding="utf-8")
+        self.production_assets_ko = (
+            SKILL_ROOT / "references" / "reusable-production-assets.ko.md"
+        ).read_text(encoding="utf-8")
 
     def test_skill_loads_independent_supervision_for_multi_system_work(self):
         self.assertIn("independent-visual-supervision.md", self.skill)
@@ -116,6 +119,18 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         self.assertIn("Unreal content plugin", self.production_assets)
         self.assertIn("REVALIDATION_REQUIRED", self.production_assets)
         self.assertIn("license and dependency audit", self.production_assets)
+
+    def test_korean_production_asset_guide_is_discoverable_and_actionable(self):
+        self.assertIn("reusable-production-assets.ko.md", self.skill)
+        self.assertIn("reusable-production-assets.ko.md", self.production_assets)
+        self.assertIn("재사용 가능한 생산 자산 사용 안내", self.production_assets_ko)
+        self.assertIn("가장 쉬운 사용 방법", self.production_assets_ko)
+        self.assertIn("terrain-projected-gravel-route.system.json", self.production_assets_ko)
+        self.assertIn("clustered-water-vegetation.system.json", self.production_assets_ko)
+        self.assertIn("REVALIDATION_REQUIRED", self.production_assets_ko)
+        self.assertIn("NoCollision", self.production_assets_ko)
+        self.assertNotIn("C:/Users/", self.production_assets_ko)
+        self.assertNotIn("/Game/", self.production_assets_ko)
 
     def test_independent_supervisor_uses_requested_model_and_effort(self):
         self.assertIn('model="gpt-5.6-sol"', self.skill)
