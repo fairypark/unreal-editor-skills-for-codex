@@ -10,6 +10,8 @@ Build an environment as a playable place, not a camera-facing diorama. Treat eve
 ## Load only the guidance the task needs
 
 - Read [quality-gates.md](references/quality-gates.md) for every build or review.
+- Read [visual-first-production-legacy.md](references/visual-first-production-legacy.md) for every build, rebuild, or review so new work inherits proven visual-first decisions without copying project-specific values.
+- Read [reusable-production-assets.md](references/reusable-production-assets.md) when preserving, promoting, packaging, installing, or reusing production assets across levels, projects, teams, or users.
 - Read [independent-visual-supervision.md](references/independent-visual-supervision.md) for every multi-system level build, rebuild, dressing pass, visual-quality recovery, golden slice, or full-level acceptance review.
 - Read [visual-quality-onboarding.md](references/visual-quality-onboarding.md) when setting up a new Unreal project, when no project-owned visual policy exists, or when the user asks about Visual Recipes or quality-gate adoption.
 - Read [codex-mini-arena-case-study.md](references/codex-mini-arena-case-study.md) only when an onboarding decision benefits from a compact worked example. Treat it as a procedural case study, never as a preset.
@@ -18,7 +20,7 @@ Build an environment as a playable place, not a camera-facing diorama. Treat eve
 
 ## Establish authority and provenance
 
-1. Read relevant project-registered Unreal Agent Skills when a live project exposes them. Treat this Codex skill as the reusable baseline and project skills as narrow overrides or additions.
+1. Read relevant project-registered Unreal Agent Skills and any active project-owned production legacy when a live project exposes them. Treat this Codex skill as the reusable baseline and project skills as narrow overrides or additions. Inherit gates and decision patterns; revalidate map-specific assets, transforms, densities, light values, and procedural parameters in the new concept.
 2. Inspect the live Editor and discover only the toolsets needed for the next stage. Do not preload or restate every tool schema.
 3. Prefer structured Unreal tools over screen control. If UI control is unavoidable, use it for the smallest possible action and stop observing or controlling the UI immediately afterward.
 4. Declare one construction mode:
@@ -66,6 +68,12 @@ Before layout, turn the request into observable targets.
 
 When agent delegation is available, assign one separate read-only visual supervisor before expanding the golden slice. Keep the primary agent as the builder and reuse the same supervisor for focused target reviews and full-level acceptance.
 
+Spawn the supervisor with `model="gpt-5.6-sol"` and
+`reasoning_effort="xhigh"` when supported. Prefer a project- or user-defined
+`visual_critic` role. If those settings are unavailable, use the highest
+supported reasoning effort, disclose the fallback, and keep the supervisor
+read-only.
+
 Give the supervisor raw concepts, fixed-camera captures, the rubric, and only the factual change scope. Do not leak the intended verdict or the builder's self-assessment. A supervisor target `PASS` does not imply full-level `GO`, and an unresolved supervisor hard failure blocks completion.
 
 When delegation is unavailable, run the same review as a separate pass and label it `self-review; not independently supervised`. Do not claim that an independent gate occurred.
@@ -85,7 +93,7 @@ Do not proceed if the whole playable land reads as one plane, if architecture is
 
 ### 2. Golden slice
 
-Finish one representative 10–20 m gameplay segment before scaling:
+Finish one representative 10-30 m gameplay segment before scaling:
 
 - final terrain transition and route;
 - one focal structure or prop;
@@ -123,6 +131,23 @@ Lighting and scatter cannot compensate for weak terrain, insufficient assets, po
 7. Inspect performance, streaming, LOD or instancing, runtime warnings, and persistence.
 8. Save affected levels and owned assets after successful gates.
 9. Record transferable lessons and failed approaches in the iteration log. Keep project paths, actor names, exact coordinates, and asset-pack anecdotes out of the reusable skill.
+
+## Preserve reusable production assets
+
+When a visual system receives independent approval, separate its portable logic
+from project-specific content. Catalog the source, dependencies, evidence,
+approval scope, required substitutions, and `REVALIDATION_REQUIRED` state.
+
+Use `scripts/install_production_asset_templates.py --project-root <root>` to
+install the plugin's dependency-free catalog and system-contract templates into
+a project. Refuse overwrites by default. Never distribute third-party meshes,
+textures, materials, or derived Unreal packages unless their license explicitly
+permits redistribution.
+
+Keep exact approved UAssets in a project-owned read-only source library. Share
+dependency-free system contracts through this plugin. Package actual UAssets
+for other users only as a separately versioned Unreal content plugin after a
+license and dependency audit.
 
 ## Definition of done
 

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "catalog_id": "replace_with_catalog_id",
+  "status": "draft",
+  "library_root": "replace_with_project_library_root",
+  "source_level": "",
+  "source_recipe": "",
+  "reuse_policy": {
+    "library_is_read_only_source": true,
+    "duplicate_before_use": true,
+    "approval_transfers_automatically": false,
+    "new_scope_revalidation_required": true,
+    "metadata_reuse_status": "REVALIDATION_REQUIRED",
+    "minimum_applicable_visual_score": 4,
+    "hard_failure_forces_no_go": true
+  },
+  "assets": [],
+  "data_only_presets": [],
+  "excluded_candidates": []
+}

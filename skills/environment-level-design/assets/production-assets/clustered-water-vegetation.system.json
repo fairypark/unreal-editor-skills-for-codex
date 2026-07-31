@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "system_id": "clustered_water_vegetation_v1",
+  "category": "water_surface_ecology_pcg",
+  "distribution": "dependency_free_system_contract",
+  "approval_transfer": "REVALIDATION_REQUIRED",
+  "intent": "Create natural water-plant colonies with asymmetric overlap, shoreline contact, and authored open-water corridors instead of sparse patterned scatter.",
+  "required_inputs": [
+    "water-body boundary",
+    "waterline height",
+    "shoreline contact band",
+    "open-water exclusion corridors",
+    "leaf underlayer mesh set",
+    "low-frequency flower mesh set",
+    "optional micro-accent mesh set"
+  ],
+  "responsibilities": [
+    "build irregular colony centers and lobes",
+    "assemble a dense overlapping leaf underlayer",
+    "add low-frequency flower and anisotropic micro accents on separate branches",
+    "preserve macro gaps and open-water corridors",
+    "validate shoreline contacts and waterline"
+  ],
+  "required_parameters": [
+    "colony_count_range",
+    "colony_radius_range_centimeters",
+    "local_overlap_range",
+    "accent_frequency_ranges",
+    "waterline_offset_centimeters",
+    "shoreline_overlap_centimeters",
+    "deterministic_seed"
+  ],
+  "output_contract": {
+    "collision_profile": "NoCollision",
+    "overlap_events": false,
+    "affects_navigation": false,
+    "waterline": "hide stems and bases while retaining leaf silhouettes"
+  },
+  "hard_failures": [
+    "uniform grid or ring",
+    "sparse repeated flowers",
+    "exposed repeated bases",
+    "missing shoreline contact",
+    "lost open-water corridor",
+    "tiled patch repetition"
+  ],
+  "promotion_evidence": [
+    "hero, elevated water audit, shoreline, and reverse cameras",
+    "collision and navigation audit",
+    "independent scores of at least 4/5 with no hard failure"
+  ]
+}

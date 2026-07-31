@@ -22,6 +22,12 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         self.case_study = (
             SKILL_ROOT / "references" / "codex-mini-arena-case-study.md"
         ).read_text(encoding="utf-8")
+        self.legacy = (
+            SKILL_ROOT / "references" / "visual-first-production-legacy.md"
+        ).read_text(encoding="utf-8")
+        self.production_assets = (
+            SKILL_ROOT / "references" / "reusable-production-assets.md"
+        ).read_text(encoding="utf-8")
 
     def test_skill_loads_independent_supervision_for_multi_system_work(self):
         self.assertIn("independent-visual-supervision.md", self.skill)
@@ -90,6 +96,31 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
             audit["evaluator_role"],
         )
         self.assertEqual("PENDING", audit["verdict"])
+
+    def test_visual_first_legacy_is_loaded_and_portable(self):
+        self.assertIn("visual-first-production-legacy.md", self.skill)
+        self.assertIn("Persistent Camera Actors", self.legacy)
+        self.assertIn("10-30 m golden slice", self.legacy)
+        self.assertIn("gpt-5.6-sol", self.legacy)
+        self.assertIn("xhigh", self.legacy)
+        self.assertIn("NoCollision", self.legacy)
+        self.assertIn("Accelerate only approved quality", self.legacy)
+        self.assertNotIn("C:/Users/", self.legacy)
+        self.assertNotIn("/Game/", self.legacy)
+
+    def test_reusable_production_assets_are_public_contracts(self):
+        self.assertIn("reusable-production-assets.md", self.skill)
+        self.assertIn("install_production_asset_templates.py", self.skill)
+        self.assertIn("Project source library", self.production_assets)
+        self.assertIn("Portable system contract", self.production_assets)
+        self.assertIn("Unreal content plugin", self.production_assets)
+        self.assertIn("REVALIDATION_REQUIRED", self.production_assets)
+        self.assertIn("license and dependency audit", self.production_assets)
+
+    def test_independent_supervisor_uses_requested_model_and_effort(self):
+        self.assertIn('model="gpt-5.6-sol"', self.skill)
+        self.assertIn('reasoning_effort="xhigh"', self.skill)
+        self.assertIn("visual_critic", self.skill)
 
 
 if __name__ == "__main__":
