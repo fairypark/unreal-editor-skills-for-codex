@@ -1,4 +1,4 @@
 interface:
-  display_name: "Environment Level Design"
-  short_description: "Set up and build Unreal environments with visual QA"
-  default_prompt: "Use $environment-level-design to build a polished Unreal environment, preserve reusable production assets, and validate it with independent read-only visual supervision."
+  display_name: "Environment Level Design Execution"
+  short_description: "Execute and verify live Unreal environment work"
+  default_prompt: "Use $environment-level-design to apply an approved level design in the live Unreal Editor and verify every mutation with runtime and fixed-camera evidence."

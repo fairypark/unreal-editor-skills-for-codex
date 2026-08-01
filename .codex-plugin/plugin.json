@@ -1,7 +1,7 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.3.2",
-  "description": "Control and extend a live Unreal Editor and build polished environments through Codex-ready workflows.",
+  "version": "0.4.0",
+  "description": "Execute and verify live Unreal Editor work through Codex-ready MCP workflows.",
   "author": {
     "name": "Community Maintainers"
   },
@@ -24,7 +24,7 @@
   "interface": {
     "displayName": "Unreal Editor Skills for Codex",
     "shortDescription": "Drive Unreal Editor safely through MCP toolsets.",
-    "longDescription": "Adds workflows for live Unreal Editor control, MCP toolset authoring, project-owned environment quality setup, golden slices, independent read-only visual supervision, reusable production-asset contracts and installers, project-specific Unreal Agent Skills, and optional consent-based local usage metrics.",
+    "longDescription": "Adds an execution layer for live Unreal Editor control, MCP toolset authoring, project-owned environment operations, persistent-camera evidence, independent read-only review handoff, dependency-free production contracts, project-specific Unreal Agent Skills, and optional consent-based local usage metrics. It can consume designs from the separately installable Unreal Development Handbook for Codex and remains usable without it.",
     "developerName": "Community Maintainers",
     "category": "Developer Tools",
     "capabilities": [
@@ -35,7 +35,7 @@
     "defaultPrompt": [
       "Inspect the open level or verify a marketplace import without disturbing it.",
       "Design an AI-callable Unreal toolset with tests.",
-      "Set up and validate an environment level with independent visual QA."
+      "Apply an approved environment design and verify it with persistent-camera evidence."
     ]
   },
   "mcpServers": "./.mcp.json"

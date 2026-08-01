@@ -17,6 +17,13 @@ TEMPLATE_NAMES = (
 )
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--project-root", required=True, type=Path)
+    parser.add_argument("--force", action="store_true")
+    return parser.parse_args()
+
+
 def validate_json(path: Path) -> None:
     with path.open("r", encoding="utf-8") as handle:
         value = json.load(handle)
@@ -33,6 +40,7 @@ def install(project_root: Path, force: bool = False) -> dict[str, object]:
     destination_root = (
         project_root / "Docs" / "VisualQuality" / "ProductionAssets" / "Templates"
     )
+
     sources = [source_root / name for name in TEMPLATE_NAMES]
     for source in sources:
         if not source.is_file():
@@ -58,13 +66,6 @@ def install(project_root: Path, force: bool = False) -> dict[str, object]:
         "installed": installed,
         "overwrote_existing": bool(conflicts),
     }
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--project-root", required=True, type=Path)
-    parser.add_argument("--force", action="store_true")
-    return parser.parse_args()
 
 
 def main() -> int:
