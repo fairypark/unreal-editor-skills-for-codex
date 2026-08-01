@@ -1,4 +1,4 @@
 interface:
   display_name: "Environment Level Design"
-  short_description: "Set up and build Unreal environments with visual QA"
-  default_prompt: "Use $environment-level-design to build a polished Unreal environment, preserve reusable production assets, and validate it with independent read-only visual supervision."
+  short_description: "Build Unreal levels with independent visual QA"
+  default_prompt: "Use $environment-level-design to build and validate a polished Unreal environment with an independent read-only visual supervisor running at xhigh reasoning when supported."

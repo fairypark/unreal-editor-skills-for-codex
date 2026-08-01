@@ -8,11 +8,19 @@ Pass only when:
 
 - one primary concept or reference direction is selected;
 - arrival, hero, route, and reverse views are represented;
+- each required view has an observable frame contract covering normalized
+  anchors, spatial relations, depth layers, value hierarchy, horizon target
+  and tolerance, primary-mass occupancy, maximum unarticulated area, and hard
+  blockers;
+- a frame-contract overlay can be generated for each fixed comparison camera;
 - route, focal hierarchy, enclosure, terrain silhouette, architecture vocabulary, vegetation strata, material palette, atmosphere, and prohibited motifs are written down;
 - the concept is feasible with available assets, systems, time, and performance budget;
 - construction provenance is explicit.
 
 Stop if the design depends on unavailable capabilities. Obtain suitable assets, revise the concept, or reduce scope before building.
+
+Frame-contract limits are diagnostic constraints, not automatic beauty scores.
+Do not loosen them after seeing a weak build merely to manufacture a pass.
 
 ## Gate B — Topography and playable structure
 
@@ -66,6 +74,23 @@ Capture:
 - one elevated overview;
 - close contact views for buildings, water, paths, and vegetation.
 
+For every acceptance image, preserve a paired evidence receipt that binds the
+camera role and persistent camera identity, world, transform, complete camera
+view and post-process state, FOV, pixel dimensions, file byte count, SHA-256,
+capture start and end, file modification time, UI-clean state, and temporal,
+streaming, asset-compilation, and shader-compilation settlement. Preserve the
+capture-returned PNG and receipt hashes outside those files and pass them as
+trust anchors when re-running the handoff verifier immediately before
+independent review. An existing filename without a matching receipt and
+successful handoff-time verification is not evidence.
+
+For golden-slice and full-level promotion, use a reusable Movie Render Queue or
+Movie Render Graph beauty-evidence configuration when available. Rendering
+selected persistent cameras is not enough by itself: enable
+`Render Warm Up Frames` so engine warm-up frames are submitted to the GPU.
+Record the configuration asset and output paths. Keep Object ID and other
+diagnostic passes separate; they cannot substitute for beauty evidence.
+
 Score each category from 1 to 5:
 
 1. concept or reference fidelity;
@@ -92,6 +117,51 @@ The supervisor must judge raw fixed-camera evidence against the selected referen
 A focused target `PASS` closes only that target. It does not clear unresolved full-level hard failures. Preserve failed and superseded audits as history.
 
 When delegation is unavailable, label the result `self-review; not independently supervised`. Never describe it as an independent verdict.
+
+## Complete decision package
+
+Before claiming any aspirational, benchmark, golden-slice, or full-level gate,
+create one project-owned quality-run manifest that links:
+
+- the exact recipe, stage audit, and golden-slice brief;
+- the append-only visual iteration history, including macro-composition IDs,
+  consecutive verdicts, and documented reset evidence;
+- every procedural pattern card required for that decision;
+- the persistent-camera evidence, paired receipts, and external PNG/receipt
+  hash trust anchors;
+- the reusable MRQ/MRG beauty-render configuration;
+- the research-freshness policy;
+- the exact read-only independent evaluator role.
+
+Run one project-owned validator over the complete package. Its result must
+distinguish:
+
+- `GO`: visual, procedural, evidence, render, and package gates all pass;
+- `NO-GO`: the visual verdict or a procedural scope blocks promotion;
+- `PENDING_RUNTIME`: the authoring package is structurally valid but the
+  independent visual audit, trusted runtime evidence, sanitized handoff, or
+  render configuration remains incomplete;
+- `INVALID`: the package contradicts its schema, stage, paths, or child
+  artifacts.
+
+Do not assemble a favorable completion claim from several individually passing
+commands when the complete decision package has not returned `GO`.
+
+A project initializer may generate overlays, a stage brief, and a Quality Run
+from a validated recipe and frame contract. It must begin at
+`PENDING_RUNTIME`, refuse overwrites, and never manufacture an audit, evidence
+hash, camera transform, or passing verdict. Concept-ready cameras may remain
+unplaced; the aspirational camera becomes mandatory at
+`aspirational_frame_ready`, and all required persistent cameras become
+mandatory for later promotion states.
+
+Every independent stage decision must append one immutable audit reference to
+the visual iteration history. When one macro composition reaches the recipe's
+consecutive `NO-GO` threshold, the complete package remains `NO-GO` even if a
+local target later passes. Clear the blocker only with
+`composition_reset=true`, a new macro-composition ID, and new concept,
+contract, or blockout evidence. Fog, foliage, props, lighting, and contact
+dressing are not composition resets.
 
 ## Hard failures
 

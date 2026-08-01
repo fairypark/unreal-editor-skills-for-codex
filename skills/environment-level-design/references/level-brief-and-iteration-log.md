@@ -22,6 +22,7 @@ Keep this record in a project-owned text file so the next level can reuse lesson
 - Hero view:
 - Route view:
 - Reverse view:
+- Per-view observable frame contracts and overlay paths:
 - Prohibited motifs or failure imagery:
 
 ### Gameplay and scale
@@ -55,9 +56,30 @@ Keep this record in a project-owned text file so the next level can reuse lesson
 
 - Golden-slice location and required contents:
 - Fixed comparison cameras:
+- Current macro-composition ID:
+- Stage Visual Iteration History path:
+- Consecutive `NO-GO` threshold and current streak:
+- Composition-reset evidence when applicable:
+- Reusable MRQ/MRG beauty-evidence configuration:
+- GPU-rendered warm-up enabled:
 - PIE traversal route:
 - Quality threshold and hard failures:
 - Save and recovery checkpoint:
+
+### Procedural pattern cards
+
+For each visible procedural responsibility:
+
+- Pattern ID and approved scope:
+- Authored source assembly and semantic root:
+- Collision-free, optional-clutter, and helper roles:
+- Hierarchy and dependent-child rule:
+- Support sampling strategy and thresholds:
+- Deterministic controls and exclusions:
+- Assembly-relationship evidence:
+- Placement-contact evidence:
+- Hero, Reverse, and Contact scene evidence:
+- Independent audit and current promotion state:
 
 ## Iteration entry
 

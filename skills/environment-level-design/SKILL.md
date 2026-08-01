@@ -1,6 +1,6 @@
 ---
 name: environment-level-design
-description: Set up, design, build, rebuild, dress, or review production-quality Unreal Engine environment levels from concept through Landscape, architecture, vegetation, materials, lighting, gameplay, collision, and 360-degree visual QA. Use for new Unreal project environment workflows, new outdoor maps, open-world spaces, culturally specific environments, terrain-led level design, environment quality recovery, golden slices, independent visual supervision, or reusable level-design standards. Do not use for a single isolated Actor placement or purely conceptual questions with no level work.
+description: Design, build, rebuild, dress, or review production-quality Unreal Engine environment levels from concept through Landscape, architecture, vegetation, materials, lighting, gameplay, collision, and 360-degree visual QA. Use for new outdoor maps, open-world spaces, culturally specific environments, terrain-led level design, environment quality recovery, or reusable level-design standards. Do not use for a single isolated Actor placement or purely conceptual questions with no level work.
 ---
 
 # Environment Level Design
@@ -10,11 +10,9 @@ Build an environment as a playable place, not a camera-facing diorama. Treat eve
 ## Load only the guidance the task needs
 
 - Read [quality-gates.md](references/quality-gates.md) for every build or review.
-- Read [visual-first-production-legacy.md](references/visual-first-production-legacy.md) for every build, rebuild, or review so new work inherits proven visual-first decisions without copying project-specific values.
-- Read [reusable-production-assets.md](references/reusable-production-assets.md) when preserving, promoting, packaging, installing, or reusing production assets across levels, projects, teams, or users. When the user prefers Korean or asks for a human-readable Korean guide, also provide [reusable-production-assets.ko.md](references/reusable-production-assets.ko.md).
+- Read [visual-first-production-legacy.md](references/visual-first-production-legacy.md) for every build, rebuild, or review so new work inherits the proven visual-first production contract without copying project-specific values.
+- Read [reusable-production-assets.md](references/reusable-production-assets.md) when preserving, promoting, packaging, installing, or reusing production assets across levels, projects, teams, or users.
 - Read [independent-visual-supervision.md](references/independent-visual-supervision.md) for every multi-system level build, rebuild, dressing pass, visual-quality recovery, golden slice, or full-level acceptance review.
-- Read [visual-quality-onboarding.md](references/visual-quality-onboarding.md) when setting up a new Unreal project, when no project-owned visual policy exists, or when the user asks about Visual Recipes or quality-gate adoption.
-- Read [codex-mini-arena-case-study.md](references/codex-mini-arena-case-study.md) only when an onboarding decision benefits from a compact worked example. Treat it as a procedural case study, never as a preset.
 - Also read [landscape-ecology-and-collision.md](references/landscape-ecology-and-collision.md) when the level contains outdoor terrain, water, vegetation, Landscape materials, PCG, Foliage, or placed mesh collision.
 - Use [level-brief-and-iteration-log.md](references/level-brief-and-iteration-log.md) when starting a level, rebuilding a failed one, or preserving lessons for later maps.
 
@@ -28,24 +26,20 @@ Build an environment as a playable place, not a camera-facing diorama. Treat eve
    - **Source-assisted:** reuse a level only when the user authorizes it and the source genuinely fits the route, enclosure, collision, and visual goals.
 5. Reuse approved individual assets in either mode. Never switch provenance silently because an existing level is convenient.
 
-## Offer project-owned visual quality setup
-
-When a new project or environment task has no project-owned visual policy:
-
-1. Inspect `AGENTS.md`, registered project skills, and existing `Docs/VisualQuality` files before proposing anything.
-2. Briefly introduce the optional Visual Recipe and independent-supervision workflow. Mention the CodexMiniArena case study as an example of the procedure and judgment structure, not as a configuration to copy.
-3. Let the project select `off`, `recommended`, or `strict`. Default to `recommended` only when no higher-priority instruction chooses another mode.
-4. Adapt the templates under `assets/visual-quality/` to the project's genre, scale, team, performance target, and evidence needs. Do not silently write or overwrite `AGENTS.md`.
-5. Keep project-specific categories, thresholds, camera roles, hard failures, asset rules, and stage requirements in project-owned files. The reusable skill supplies the workflow, not universal art direction.
-6. Never let a level recipe weaken a required project threshold. User instructions and project policy remain authoritative.
-
 ## Create a decision-ready visual brief
 
 Before layout, turn the request into observable targets.
 
 1. If the user has not supplied a decisive visual direction, generate two to four concept variants and select one primary concept with the user or by clearly stated best judgment.
 2. Include at least an arrival view, hero view, route view, and reverse view across the concepts or supporting sketches. A single facade view is insufficient.
-3. Record:
+3. Convert every required view into an observable frame contract. Record
+   normalized anchor regions and their roles, required spatial relationships,
+   foreground/midground/background depth layers, value hierarchy, horizon
+   target and tolerance, primary-mass occupancy ranges, maximum unarticulated
+   area, and hard blockers. Generate a frame-contract overlay for fixed-camera
+   comparison. Treat these as diagnostic constraints, not an automatic beauty
+   score.
+4. Record:
    - setting, era, biome, weather, time, and emotional tone;
    - playable envelope, expected route length, expansion directions, and performance target;
    - macro terrain silhouette and height-band roles;
@@ -53,8 +47,12 @@ Before layout, turn the request into observable targets.
    - architecture, vegetation strata, material palette, water behavior, and atmosphere;
    - required asset families and prohibited motifs;
    - the selected quality reference and the evidence required to match it.
-4. Convert the concept into a zone-to-asset coverage matrix. “Use many assets” means every asset family receives a coherent spatial or narrative role, not indiscriminate scattering.
-5. When the project adopts the workflow, preserve these decisions in its Visual Recipe rather than relying on chat history or the current viewport.
+5. Convert the concept into a zone-to-asset coverage matrix. "Use many assets" means every asset family receives a coherent spatial or narrative role, not indiscriminate scattering.
+6. When project tooling provides a visual-quality workspace initializer, run
+   it only after the recipe and observable frame contracts validate. Require
+   its initial decision state to be `PENDING_RUNTIME`; it must not invent an
+   audit, evidence hashes, persistent-camera transforms, or a `GO` verdict.
+   Refuse overwrites so every failed and accepted run remains inspectable.
 
 ## Pass asset readiness before map-scale production
 
@@ -69,12 +67,29 @@ Before layout, turn the request into observable targets.
 When agent delegation is available, assign one separate read-only visual supervisor before expanding the golden slice. Keep the primary agent as the builder and reuse the same supervisor for focused target reviews and full-level acceptance.
 
 Spawn the supervisor with `model="gpt-5.6-sol"` and
-`reasoning_effort="xhigh"` when supported. Prefer a project- or user-defined
-`visual_critic` role. If those settings are unavailable, use the highest
-supported reasoning effort, disclose the fallback, and keep the supervisor
-read-only.
+`reasoning_effort="xhigh"` when those settings are available. Prefer a
+project- or user-defined `visual_critic` custom agent with the same model,
+reasoning effort, and read-only role. Do not raise the builder's reasoning
+effort merely because the supervisor uses `xhigh`. If the requested model or
+effort is unavailable, use the highest supported reasoning effort, state the
+fallback explicitly, and keep the gate pending rather than silently treating a
+lower-effort self-review as equivalent.
 
-Give the supervisor raw concepts, fixed-camera captures, the rubric, and only the factual change scope. Do not leak the intended verdict or the builder's self-assessment. A supervisor target `PASS` does not imply full-level `GO`, and an unresolved supervisor hard failure blocks completion.
+Give the supervisor raw concepts, persistent-camera captures with paired
+evidence receipts, the rubric, and only the factual change scope. Prefer
+`VisualEvidenceExtensionToolset.CaptureCameraToPng`, then run
+`VerifyEvidenceForSupervision` immediately before handoff with the
+capture-returned PNG and receipt hashes held outside the evidence files. Do not
+leak the intended verdict or the builder's self-assessment. A supervisor target
+`PASS` does not imply full-level `GO`, and an unresolved supervisor hard failure
+blocks completion.
+
+When the project provides a Review Submission schema or supervisor-packet
+builder, use it. Require the builder-facing submission to reject unknown fields
+and generate a new sanitized packet only after validating the concepts,
+persistent-camera files, receipts, and external hash trust anchors. Give the
+supervisor the generated packet and referenced raw files, not a hand-written
+completion narrative.
 
 When delegation is unavailable, run the same review as a separate pass and label it `self-review; not independently supervised`. Do not claim that an independent gate occurred.
 
@@ -125,17 +140,24 @@ Lighting and scatter cannot compensate for weak terrain, insufficient assets, po
 1. Capture the required evidence in [quality-gates.md](references/quality-gates.md).
 2. Ask the independent supervisor for the applicable target or full-level verdict when delegation is available.
 3. Score each category. A single hard failure blocks acceptance even when the average is high.
-4. Name the weakest system and repair it before adding more decoration.
-5. Compare baseline, change, and result from the same camera. Keep changes only when they improve the target without damaging another required view or gameplay.
-6. In PIE, verify spawn, traversal, capsule clearance, collision, stairs, banks, water edges, boundaries, and representative sightlines.
-7. Inspect performance, streaming, LOD or instancing, runtime warnings, and persistence.
-8. Save affected levels and owned assets after successful gates.
-9. Record transferable lessons and failed approaches in the iteration log. Keep project paths, actor names, exact coordinates, and asset-pack anecdotes out of the reusable skill.
+4. Append the decision to a project-owned visual iteration history with its
+   stage, immutable audit path, macro-composition ID, factual change scope, and
+   verdict. Do not rewrite failed entries.
+5. If the recipe's consecutive `NO-GO` threshold is reached on one macro
+   composition, allow only a documented composition reset with a new macro ID
+   and new concept, contract, or blockout evidence. More dressing cannot clear
+   this blocker.
+6. Name the weakest system and repair it before adding more decoration.
+7. Compare baseline, change, and result from the same camera. Keep changes only when they improve the target without damaging another required view or gameplay.
+8. In PIE, verify spawn, traversal, capsule clearance, collision, stairs, banks, water edges, boundaries, and representative sightlines.
+9. Inspect performance, streaming, LOD or instancing, runtime warnings, and persistence.
+10. Save affected levels and owned assets after successful gates.
+11. Record transferable lessons and failed approaches in the iteration log. Keep project paths, actor names, exact coordinates, and asset-pack anecdotes out of the reusable skill.
 
 ## Preserve reusable production assets
 
-When a visual system receives independent approval, separate its portable logic
-from project-specific content. Catalog the source, dependencies, evidence,
+When a visual system receives an independent approval, separate its portable
+logic from project-specific content. Catalog the source, dependencies, evidence,
 approval scope, required substitutions, and `REVALIDATION_REQUIRED` state.
 
 Use `scripts/install_production_asset_templates.py --project-root <root>` to

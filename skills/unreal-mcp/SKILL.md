@@ -18,6 +18,14 @@ The Codex host may namespace MCP tool names. Search for the three meta-tools rat
 
 If the meta-tools are absent or initialization fails, do not pretend the Editor is connected. Ask the user to start Unreal Editor and run `ModelContextProtocol.StartServer`, then read [references/setup.md](references/setup.md) if the project has not been configured.
 
+Before restarting an existing MCP server or working with a non-default endpoint, read [references/operations.md](references/operations.md). Resolve the configured Codex URL, the Unreal port setting, and the active listener as separate facts. Do not run the no-argument `ModelContextProtocol.StartServer` command against a custom-port project.
+
+Before the first mutation in a newly initialized task, run
+`scripts/check_endpoint.py --project-root <project-root>` when the project uses
+an HTTP MCP endpoint. Continue only when it reports `runtime_endpoint_verdict:
+PASS`, then call `list_toolsets` and one read-only Unreal query to clear its
+`PENDING_LIST_TOOLSETS` mutation gate.
+
 ## Apply hard safety constraints
 
 - Save the affected level and assets before bulk changes and again after success.

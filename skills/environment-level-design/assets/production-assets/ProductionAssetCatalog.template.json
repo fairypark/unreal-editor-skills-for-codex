@@ -2,7 +2,7 @@
   "schema_version": 1,
   "catalog_id": "replace_with_catalog_id",
   "status": "draft",
-  "library_root": "replace_with_project_library_root",
+  "library_root": "/Game/ProductionLibrary/replace",
   "source_level": "",
   "source_recipe": "",
   "reuse_policy": {

@@ -14,6 +14,11 @@ Its initial signals are:
 - mutation turns followed by a read or verification call;
 - optional user ratings from 1 to 5.
 
+For `UnrealToolsetsExtension`, the adapter also records exact cataloged
+operation classes, allowlisted stable error codes, extension and Engine
+versions when observed, internal postcondition semantics, extension discovery,
+and targeted ratings. Extension-specific fields use consent version 2.
+
 Do not collapse these signals into a single usefulness score until enough representative
 data exists. Review activation, reliability, verification, efficiency, and feedback
 separately first.
@@ -71,11 +76,20 @@ remote or shared storage.
 - `tool_finished`: the call completed with an explicit success/failure classification.
 - `turn_summary`: aggregate counts for a turn containing Unreal MCP activity.
 - `user_feedback`: an optional local 1-5 rating.
+- `extension_eligible`: the consented client discovered an exact
+  `UnrealToolsetsExtension` Toolset name.
 
 The first version observes exact Unreal MCP activity. Codex does not expose a dedicated
 Skill-start hook, so `create-toolset` and `unreal-skill` activation must not be guessed from
 prompt text or broad shell/file telemetry. Expand coverage only when a deterministic,
 privacy-preserving signal is available.
+
+Extension operations are classified from the bundled versioned catalog, never
+from prompt text or operation-name prefixes. `ReimportLandscapeData` and
+`RebuildStreamingProxies` remain `mutation_capable` because their private
+`bDryRun` argument is not inspected or stored. Successful internal
+postcondition verification and a later workflow read or verification are
+reported as separate signals.
 
 ## User controls
 
@@ -85,7 +99,9 @@ The `unreal-usage-metrics` Skill exposes deterministic actions:
 - disable new collection;
 - show status;
 - show an aggregate summary;
+- show a local or explicitly shareable `UnrealToolsetsExtension` aggregate;
 - record a 1-5 rating;
+- record a targeted `UnrealToolsetsExtension` rating;
 - delete stored events.
 
 These controls should be available through natural-language requests. Do not require users
@@ -131,6 +147,10 @@ Every metrics or Hook change must verify:
 - disabling immediately stops new collection;
 - deletion retains the preference;
 - private payload values cannot appear in the event log;
+- extension eligibility requires an exact discovered Toolset name;
+- only cataloged error codes can be stored and error detail is discarded;
+- dry-run-capable operations are not counted as confirmed mutations;
+- shareable operation rows with fewer than five samples are suppressed;
 - Hook errors fail open and do not block Unreal work;
 - `Stop` emits valid JSON;
 - Plugin and every Skill pass the official validators;

@@ -69,6 +69,60 @@ For procedural generation:
 - cap density by platform budget and verify instancing, LOD, Nanite, HLOD, and streaming behavior;
 - regenerate only after the governing terrain or mask is stable.
 
+Before graph construction, line up every candidate spawn mesh with its final material,
+intended scale range, and representative viewing distance. Reject a mesh family
+whose silhouette reads as blocks, shards, or loose debris when the target
+requires an interlocking surface or authored assembly. Density and random
+transforms cannot repair an unsuitable source silhouette.
+
+For comparative iterations, expose exactly one procedural candidate at a time.
+Hide or disable superseded graph instances, verify which components contribute
+to the frame, and only then capture evidence. Overlapping generations invalidate
+the comparison even when every graph reports successful execution.
+
+After generation and before visual review, record a structured technical audit
+when the available tools support it:
+
+- generated instance count by responsibility;
+- collision profile and overlap behavior;
+- Navigation influence;
+- terrain or Landscape coverage;
+- grounded ratio at a documented tolerance;
+- graph warnings, errors, and regeneration time.
+
+These checks diagnose placement and runtime risk; they do not grant visual
+approval. Successful execution, complete terrain coverage, and perfect
+grounding can still produce a visible `NO-GO`.
+
+Measure initial authoring time separately from regeneration time. Do not claim
+an authoring-speed improvement from a fast regeneration result that excludes
+graph construction, source-asset inspection, candidate cleanup, capture, or
+visual repair.
+
+For multi-part ecological, geological, or architectural clusters, author the
+relationship before proceduralizing it:
+
+1. Compose one coherent cluster at final scale in a small source level.
+2. Assign one semantic root and explicit roles for collision-free visuals,
+   optional clutter, and non-spawned helper points.
+3. Preserve parent-child transforms through copy, filtering, and variation.
+   Removing a required parent must remove its dependent children.
+4. Merge all hierarchy branches and apply the final hierarchy immediately
+   before spawning.
+5. Reject recognizable repetition of the full assembly from hero and reverse
+   views.
+
+Promote a procedural pattern in stages: isolated assembly relationship,
+placement contact, unchanged scene context, then independent approval for an
+explicit role and distance band. Successful generation or a high point count
+does not advance the pattern.
+
+Validate support across the visual footprint of any broad rock, root, bank
+patch, foundation, or multi-part assembly. Sample at least the center and four
+surrounding points, compare height and surface-normal tolerances, and discard
+the source point when a required sample fails. A center ray hit, bounding box,
+or clutter placed over a gap is not proof of contact.
+
 Do not use uniform scatter or an evenly spaced perimeter ring. A forest is a spatial volume with gradients, gaps, and ecological logic.
 
 ## Preserve visual placement when correcting collision

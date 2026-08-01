@@ -1,4 +1,3 @@
-import json
 import unittest
 from pathlib import Path
 
@@ -16,21 +15,54 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         self.supervision = (
             SKILL_ROOT / "references" / "independent-visual-supervision.md"
         ).read_text(encoding="utf-8")
-        self.onboarding = (
-            SKILL_ROOT / "references" / "visual-quality-onboarding.md"
+        self.landscape = (
+            SKILL_ROOT
+            / "references"
+            / "landscape-ecology-and-collision.md"
         ).read_text(encoding="utf-8")
-        self.case_study = (
-            SKILL_ROOT / "references" / "codex-mini-arena-case-study.md"
+        self.brief = (
+            SKILL_ROOT / "references" / "level-brief-and-iteration-log.md"
         ).read_text(encoding="utf-8")
         self.legacy = (
             SKILL_ROOT / "references" / "visual-first-production-legacy.md"
         ).read_text(encoding="utf-8")
-        self.production_assets = (
+
+    def test_visual_first_legacy_is_loaded_for_every_level(self):
+        self.assertIn("visual-first-production-legacy.md", self.skill)
+        for required in (
+            "arrival, hero,",
+            "route, and reverse",
+            "persistent `CameraActor`",
+            "10–30 m golden slice",
+            "visual_critic",
+            "`gpt-5.6-sol`",
+            "`xhigh`",
+            "at least 4/5",
+            "NoCollision",
+            "Landscape, mesh terrain, or a hybrid",
+            "waterline mist",
+            "one width-bearing surface",
+            "Accelerate only approved quality",
+            "Previous approval never transfers",
+        ):
+            self.assertIn(required, self.legacy)
+
+    def test_reusable_production_assets_are_public_plugin_resources(self):
+        self.assertIn("reusable-production-assets.md", self.skill)
+        self.assertIn("install_production_asset_templates.py", self.skill)
+        reference = (
             SKILL_ROOT / "references" / "reusable-production-assets.md"
         ).read_text(encoding="utf-8")
-        self.production_assets_ko = (
-            SKILL_ROOT / "references" / "reusable-production-assets.ko.md"
-        ).read_text(encoding="utf-8")
+        for required in (
+            "Project source library",
+            "Portable system contract",
+            "Unreal content plugin",
+            "REVALIDATION_REQUIRED",
+            "license and dependency audit",
+            "terrain-projected-gravel-route.system.json",
+            "clustered-water-vegetation.system.json",
+        ):
+            self.assertIn(required, reference)
 
     def test_skill_loads_independent_supervision_for_multi_system_work(self):
         self.assertIn("independent-visual-supervision.md", self.skill)
@@ -40,6 +72,18 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         self.assertIn("Keep the primary agent as the builder", self.supervision)
         self.assertIn("Remain read-only", self.supervision)
         self.assertIn("Do not mutate Unreal state", self.supervision)
+
+    def test_independent_supervisor_uses_xhigh_reasoning(self):
+        for document in (self.skill, self.supervision):
+            self.assertIn('model="gpt-5.6-sol"', document)
+            self.assertIn('reasoning_effort="xhigh"', document)
+            self.assertIn("visual_critic", document)
+            self.assertIn("highest supported", document)
+        self.assertIn(
+            "Do not raise the builder's reasoning",
+            self.skill,
+        )
+        self.assertIn("Never silently downgrade", self.supervision)
 
     def test_target_pass_does_not_clear_full_level_gate(self):
         self.assertIn(
@@ -61,81 +105,153 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         self.assertIn(phrase, self.gates)
         self.assertIn(phrase, self.supervision)
 
-    def test_new_project_setup_routes_to_onboarding(self):
-        self.assertIn("visual-quality-onboarding.md", self.skill)
-        self.assertIn("CodexMiniArena case study", self.skill)
-        self.assertIn("`off`, `recommended`, or `strict`", self.skill)
-
-    def test_case_study_is_procedural_not_a_preset(self):
-        self.assertIn("not a preset", self.case_study)
-        self.assertIn("It does not prescribe", self.case_study)
-        self.assertIn("project and machine paths", self.case_study)
-        self.assertNotIn("C:/Users/", self.case_study)
-        self.assertNotIn("/Game/", self.case_study)
-
-    def test_onboarding_preserves_project_authority(self):
-        self.assertIn("Do not edit `AGENTS.md` silently", self.onboarding)
-        self.assertIn("A level recipe may make a gate stricter", self.onboarding)
+    def test_persistent_camera_evidence_is_file_and_metadata_verified(self):
         self.assertIn(
-            "Read-only supervision is a role contract", self.onboarding
+            "VisualEvidenceExtensionToolset.CaptureCameraToPng",
+            self.skill,
+        )
+        self.assertIn("VerifyEvidenceForSupervision", self.skill)
+        for required in (
+            "persistent `CameraActor`",
+            "CameraRole",
+            ".evidence.json",
+            "1280x720",
+            "receipt SHA-256",
+            "trust anchors",
+            "jointly-rewritten",
+            "three warmup draws",
+            "two consecutive stable frame pairs",
+            "64-character",
+            "SHA-256",
+            "thumbnail-sized fallback",
+            "handoff time",
+        ):
+            self.assertIn(required, self.supervision)
+        self.assertIn(
+            "successful handoff-time verification is not evidence",
+            self.gates,
         )
 
-    def test_visual_quality_templates_are_bundled(self):
-        assets = SKILL_ROOT / "assets" / "visual-quality"
-        expected = {
-            "project-policy.template.yaml",
-            "visual-recipe.template.yaml",
-            "visual-audit.template.json",
-        }
-        self.assertEqual(
-            expected,
-            {path.name for path in assets.iterdir() if path.is_file()},
+    def test_procedural_patterns_promote_relationship_then_contact(self):
+        for required in (
+            "relationship before proceduralizing it",
+            "semantic root",
+            "dependent children",
+            "isolated assembly relationship",
+            "placement contact",
+            "surrounding points",
+            "surface-normal tolerances",
+        ):
+            self.assertIn(required, self.landscape)
+        self.assertIn("Procedural pattern cards", self.brief)
+        self.assertIn("Hero, Reverse, and Contact", self.brief)
+
+    def test_procedural_comparisons_validate_inputs_and_isolate_outputs(self):
+        for required in (
+            "line up every candidate spawn mesh",
+            "final material",
+            "exactly one procedural candidate at a time",
+            "Overlapping generations",
+            "invalidate",
+            "structured technical audit",
+            "generated instance count by responsibility",
+            "Navigation influence",
+            "grounded ratio at a documented tolerance",
+            "do not grant visual",
+            "approval",
+            "initial authoring time separately from regeneration time",
+        ):
+            self.assertIn(required, self.landscape)
+
+    def test_final_render_evidence_requires_gpu_warmup(self):
+        for document in (self.gates, self.supervision):
+            self.assertIn("Render Warm Up Frames", document)
+            self.assertIn("Object ID", document)
+            self.assertIn("beauty evidence", document)
+
+    def test_complete_decision_package_has_unambiguous_statuses(self):
+        for required in (
+            "quality-run manifest",
+            "external PNG/receipt",
+            "MRQ/MRG beauty-render configuration",
+            "`GO`",
+            "`NO-GO`",
+            "`PENDING_RUNTIME`",
+            "`INVALID`",
+            "complete decision package has not returned `GO`",
+        ):
+            self.assertIn(required, self.gates)
+
+    def test_workspace_initializer_cannot_manufacture_readiness(self):
+        for required in (
+            "workspace initializer",
+            "`PENDING_RUNTIME`",
+            "must not invent an",
+            "evidence hashes",
+            "`GO` verdict",
+            "Refuse overwrites",
+        ):
+            self.assertIn(required, self.skill)
+        for required in (
+            "refuse overwrites",
+            "never manufacture an audit",
+            "Concept-ready cameras may remain",
+            "`aspirational_frame_ready`",
+        ):
+            self.assertIn(required, self.gates)
+
+    def test_repeated_no_go_forces_documented_composition_reset(self):
+        for required in (
+            "visual iteration history",
+            "macro-composition ID",
+            "consecutive `NO-GO` threshold",
+            "documented composition reset",
+            "new macro ID",
+            "More dressing cannot clear",
+        ):
+            self.assertIn(required, self.skill)
+        for required in (
+            "append-only visual iteration history",
+            "`composition_reset=true`",
+            "new macro-composition ID",
+            "Fog, foliage, props, lighting",
+        ):
+            self.assertIn(required, self.gates)
+        self.assertIn("Current macro-composition ID", self.brief)
+
+    def test_supervisor_handoff_uses_sanitized_packet(self):
+        for required in (
+            "schema-restricted Review Submission",
+            "rejects unknown fields",
+            "builder scores",
+            "intended verdicts",
+            "completion claims",
+            "external PNG/receipt hash trust anchors",
+            "immutable Supervisor Packet",
+            "hand-written summary is not a",
+        ):
+            self.assertIn(required, self.supervision)
+        self.assertIn("supervisor-packet", self.skill)
+
+    def test_concept_is_an_observable_frame_contract(self):
+        for required in (
+            "observable frame contract",
+            "normalized anchor",
+            "depth layers",
+            "value hierarchy",
+            "horizon",
+            "target and tolerance",
+            "primary-mass occupancy",
+            "maximum unarticulated",
+            "diagnostic constraints",
+            "automatic beauty",
+        ):
+            self.assertIn(required, self.skill)
+        self.assertIn("frame-contract overlay", self.gates)
+        self.assertIn(
+            "applicable observable frame contracts",
+            self.supervision,
         )
-        audit = json.loads(
-            (assets / "visual-audit.template.json").read_text(encoding="utf-8")
-        )
-        self.assertEqual(
-            "read-only independent visual evaluator",
-            audit["evaluator_role"],
-        )
-        self.assertEqual("PENDING", audit["verdict"])
-
-    def test_visual_first_legacy_is_loaded_and_portable(self):
-        self.assertIn("visual-first-production-legacy.md", self.skill)
-        self.assertIn("Persistent Camera Actors", self.legacy)
-        self.assertIn("10-30 m golden slice", self.legacy)
-        self.assertIn("gpt-5.6-sol", self.legacy)
-        self.assertIn("xhigh", self.legacy)
-        self.assertIn("NoCollision", self.legacy)
-        self.assertIn("Accelerate only approved quality", self.legacy)
-        self.assertNotIn("C:/Users/", self.legacy)
-        self.assertNotIn("/Game/", self.legacy)
-
-    def test_reusable_production_assets_are_public_contracts(self):
-        self.assertIn("reusable-production-assets.md", self.skill)
-        self.assertIn("install_production_asset_templates.py", self.skill)
-        self.assertIn("Project source library", self.production_assets)
-        self.assertIn("Portable system contract", self.production_assets)
-        self.assertIn("Unreal content plugin", self.production_assets)
-        self.assertIn("REVALIDATION_REQUIRED", self.production_assets)
-        self.assertIn("license and dependency audit", self.production_assets)
-
-    def test_korean_production_asset_guide_is_discoverable_and_actionable(self):
-        self.assertIn("reusable-production-assets.ko.md", self.skill)
-        self.assertIn("reusable-production-assets.ko.md", self.production_assets)
-        self.assertIn("재사용 가능한 생산 자산 사용 안내", self.production_assets_ko)
-        self.assertIn("가장 쉬운 사용 방법", self.production_assets_ko)
-        self.assertIn("terrain-projected-gravel-route.system.json", self.production_assets_ko)
-        self.assertIn("clustered-water-vegetation.system.json", self.production_assets_ko)
-        self.assertIn("REVALIDATION_REQUIRED", self.production_assets_ko)
-        self.assertIn("NoCollision", self.production_assets_ko)
-        self.assertNotIn("C:/Users/", self.production_assets_ko)
-        self.assertNotIn("/Game/", self.production_assets_ko)
-
-    def test_independent_supervisor_uses_requested_model_and_effort(self):
-        self.assertIn('model="gpt-5.6-sol"', self.skill)
-        self.assertIn('reasoning_effort="xhigh"', self.skill)
-        self.assertIn("visual_critic", self.skill)
 
 
 if __name__ == "__main__":

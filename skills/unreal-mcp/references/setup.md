@@ -27,6 +27,8 @@ Start it for the current session from the Unreal console:
 ModelContextProtocol.StartServer
 ```
 
+Use the no-argument command only for the compiled default endpoint. For a custom port, read [operations.md](operations.md) before restarting an existing server. Do not assume that a saved `ServerPortNumber` changes the no-argument console command in every installed build.
+
 For per-user auto-start, add this to:
 
 ```text
@@ -46,6 +48,14 @@ ServerUrlPath=/mcp
 ```
 
 This plugin bundles Unreal's default port `8000`. Use another port when required by the local environment, and keep the Unreal setting and the effective Codex MCP URL matched.
+
+For reliable custom-port startup, launch the Editor with:
+
+```text
+UnrealEditor <Project>.uproject -ModelContextProtocolStartServer -ModelContextProtocolPort=<port>
+```
+
+After startup, verify the exact port in the Unreal Output Log and on the operating-system listener. Configuration files alone are not runtime evidence.
 
 ## 3. Configure Codex
 
@@ -71,6 +81,7 @@ Do not keep duplicate plugin-bundled and project-scoped definitions if the host 
 ## Verify
 
 - Confirm the Unreal Output Log shows server startup.
+- Confirm the reported port matches the configured Codex URL and is owned by the Unreal Editor process.
 - Confirm Codex lists `unreal-mcp` as connected.
 - Call `list_toolsets`.
 - Test a read-only request such as listing actors in the current level.

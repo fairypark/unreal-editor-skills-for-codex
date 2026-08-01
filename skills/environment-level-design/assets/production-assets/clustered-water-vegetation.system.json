@@ -12,20 +12,22 @@
     "open-water exclusion corridors",
     "leaf underlayer mesh set",
     "low-frequency flower mesh set",
-    "optional micro-accent mesh set"
+    "optional duckweed or micro-accent mesh set"
   ],
   "responsibilities": [
-    "build irregular colony centers and lobes",
+    "build irregular colony centers and lobe scales",
     "assemble a dense overlapping leaf underlayer",
-    "add low-frequency flower and anisotropic micro accents on separate branches",
-    "preserve macro gaps and open-water corridors",
-    "validate shoreline contacts and waterline"
+    "add low-frequency flower accents on a separate branch",
+    "add anisotropic micro accents on a separate branch",
+    "preserve deliberate macro gaps and open-water corridors",
+    "validate both shoreline contacts and the waterline"
   ],
   "required_parameters": [
     "colony_count_range",
     "colony_radius_range_centimeters",
     "local_overlap_range",
-    "accent_frequency_ranges",
+    "flower_frequency_range",
+    "micro_accent_frequency_range",
     "waterline_offset_centimeters",
     "shoreline_overlap_centimeters",
     "deterministic_seed"
@@ -34,19 +36,22 @@
     "collision_profile": "NoCollision",
     "overlap_events": false,
     "affects_navigation": false,
-    "waterline": "hide stems and bases while retaining leaf silhouettes"
+    "waterline": "hide stems and bases while retaining readable leaf silhouettes"
   },
   "hard_failures": [
-    "uniform grid or ring",
-    "sparse repeated flowers",
-    "exposed repeated bases",
-    "missing shoreline contact",
-    "lost open-water corridor",
-    "tiled patch repetition"
+    "uniform grid or evenly spaced ring",
+    "sparse repeated flower markers",
+    "exposed cylindrical stems or bases",
+    "colony pattern that ignores the shoreline",
+    "loss of the authored open-water corridor",
+    "one tiled patch repeated around the water body"
   ],
   "promotion_evidence": [
-    "hero, elevated water audit, shoreline, and reverse cameras",
+    "player-height hero camera",
+    "elevated water-surface audit camera",
+    "left and right shoreline contact views",
+    "reverse regression camera",
     "collision and navigation audit",
-    "independent scores of at least 4/5 with no hard failure"
+    "independent visual scores of at least 4/5 with no hard failure"
   ]
 }

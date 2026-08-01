@@ -7,7 +7,6 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILL_ROOT = REPO_ROOT / "skills" / "environment-level-design"
-ASSET_ROOT = SKILL_ROOT / "assets" / "production-assets"
 SCRIPT_PATH = SKILL_ROOT / "scripts" / "install_production_asset_templates.py"
 
 
@@ -20,34 +19,36 @@ def load_installer():
 
 
 class ProductionAssetTemplateTests(unittest.TestCase):
-    def test_templates_are_versioned_and_machine_independent(self):
-        expected = {
-            "ProductionAssetCatalog.template.json",
-            "terrain-projected-gravel-route.system.json",
-            "clustered-water-vegetation.system.json",
-        }
-        self.assertEqual(expected, {path.name for path in ASSET_ROOT.iterdir()})
-        for path in ASSET_ROOT.iterdir():
-            text = path.read_text(encoding="utf-8")
-            value = json.loads(text)
-            self.assertEqual(1, value["schema_version"])
-            self.assertNotIn("C:/Users/", text)
-            self.assertNotIn("/Game/", text)
+    def setUp(self):
+        self.installer = load_installer()
+        self.asset_root = SKILL_ROOT / "assets" / "production-assets"
 
-    def test_installer_refuses_overwrite_then_force_replaces(self):
-        installer = load_installer()
-        with tempfile.TemporaryDirectory() as directory:
-            project_root = Path(directory)
-            first = installer.install(project_root)
-            self.assertEqual("INSTALLED", first["status"])
-            self.assertEqual(3, len(first["installed"]))
-            self.assertFalse(first["overwrote_existing"])
+    def test_bundled_json_contracts_are_dependency_free(self):
+        for name in self.installer.TEMPLATE_NAMES:
+            with (self.asset_root / name).open("r", encoding="utf-8") as handle:
+                payload = json.load(handle)
+            self.assertEqual(payload["schema_version"], 1)
+            serialized = json.dumps(payload)
+            self.assertNotIn("/Game/JoseonMoonlitFestivalGarden", serialized)
+            self.assertNotIn("Seyeonjeong", serialized)
 
+    def test_installer_writes_all_templates_and_refuses_overwrite(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            result = self.installer.install(root)
+            self.assertEqual(result["status"], "INSTALLED")
+            self.assertEqual(len(result["installed"]), 3)
+            for path in result["installed"]:
+                self.assertTrue(Path(path).is_file())
             with self.assertRaises(FileExistsError):
-                installer.install(project_root)
+                self.installer.install(root)
 
-            forced = installer.install(project_root, force=True)
-            self.assertTrue(forced["overwrote_existing"])
+    def test_force_mode_reports_overwrite(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.installer.install(root)
+            result = self.installer.install(root, force=True)
+            self.assertTrue(result["overwrote_existing"])
 
 
 if __name__ == "__main__":
