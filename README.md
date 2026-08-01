@@ -6,12 +6,18 @@ This project adapts Epic Games' MIT-licensed `unreal-engine-skills-for-claude-co
 
 ## Install
 
-Add the Fairypark marketplace and install the plugin:
+Add the Fairypark marketplace, then install the execution plugin and its optional reasoning companion:
 
 ```powershell
 codex plugin marketplace add fairypark/unreal-editor-skills-for-codex
 codex plugin add unreal-editor-skills-for-codex@fairypark
+codex plugin add unreal-development-handbook-for-codex@fairypark
 ```
+
+`unreal-editor-skills-for-codex` works independently. Installing
+`unreal-development-handbook-for-codex` adds design-first and validation-first reasoning
+before non-trivial Editor execution; the Editor plugin falls back to a compact task contract
+when the Handbook is absent.
 
 Fully quit and restart the Codex or ChatGPT desktop app after installation. Start a new Codex task in the Unreal project so the installed skills, MCP connection, and session hook are loaded.
 
@@ -20,6 +26,7 @@ To update an existing installation:
 ```powershell
 codex plugin marketplace upgrade fairypark
 codex plugin add unreal-editor-skills-for-codex@fairypark
+codex plugin add unreal-development-handbook-for-codex@fairypark
 ```
 
 ## Included skills
@@ -27,13 +34,12 @@ codex plugin add unreal-editor-skills-for-codex@fairypark
 - `unreal-mcp`: inspect and mutate a live Unreal Editor safely.
 - `create-toolset`: author AI-callable Unreal C++ or Python toolsets.
 - `unreal-skill`: create project- or plugin-specific Unreal Agent Skills.
-- `environment-level-design`: design, build, and iteratively validate production-quality
-  environment levels from concept art through Landscape, ecology, gameplay, collision, and
-  360-degree visual QA. When agent delegation is available, it assigns a separate read-only
-  visual supervisor for golden-slice, target-repair, and full-level acceptance gates. When
-  the companion `UnrealToolsetsExtension` is available, persistent `CameraActor` evidence can
-  be written as a verified PNG plus evidence receipt and revalidated immediately before
-  independent-supervisor handoff.
+- `environment-level-design`: execute an approved level brief through live Landscape, PCG,
+  Foliage, materials, lighting, collision, save, PIE, and evidence operations. It uses the
+  Handbook's `design-unreal-worlds-and-levels` and `validate-unreal-production` skills when
+  installed, but keeps a minimal fallback contract so the execution plugin remains independent.
+  When `UnrealToolsetsExtension` is available, persistent `CameraActor` evidence can be written
+  as a verified PNG plus receipt and revalidated immediately before review handoff.
 - `unreal-usage-metrics`: manage optional local-only usefulness metrics.
 
 ## Optional local usage metrics
@@ -84,12 +90,11 @@ If the local environment requires a custom endpoint, configure it as a project-s
 
 The workflow was live-tested with Unreal Engine 5.8: MCP initialization, all three meta-tools, toolset discovery, project Agent Skill discovery, current-level lookup, and a read-only actor query completed successfully. The published default remains Unreal's port `8000`.
 
-For environment work, ask Codex to build or improve a level. The environment skill keeps the
-primary agent as the builder and uses a separate visual supervisor when the runtime supports agent
-delegation. When supported, the supervisor runs as `gpt-5.6-sol` with `xhigh` reasoning while the
-builder keeps its own independent reasoning setting. The supervisor receives raw fixed-camera
-evidence and remains read-only; without
-delegation, the same pass is explicitly labeled as a non-independent self-review. Evidence
+For environment work, ask Codex to implement or improve a level. With the Handbook installed,
+Codex establishes the design and validation contract before using the execution skill. The
+execution skill keeps the builder responsible for mutations and follows the current host or
+project policy for any separate read-only reviewer. Without delegation, the same pass is
+explicitly labeled as a non-independent self-review. Evidence
 promotion requires a persistent camera, a unique local PNG, its paired `.evidence.json`
 receipt, and successful handoff-time verification rather than the existence of a screenshot
 filename alone.
