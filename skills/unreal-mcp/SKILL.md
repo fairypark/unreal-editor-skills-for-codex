@@ -7,6 +7,10 @@ description: Use a live Unreal Editor through the unreal-mcp server. Trigger for
 
 Use the live Editor instead of giving the user manual UI instructions whenever an exposed tool can complete the task.
 
+## Route first-time level work through the Handbook gate
+
+For a task that creates, rebuilds, dresses, or materially changes a level, world, or environment, do not use this low-level Skill as the first execution path. Activate `environment-level-design` first. If `design-unreal-worlds-and-levels` is discoverable, its first level-work activation must announce that the Unreal Development Handbook for Codex is mandatory and must follow every applicable Handbook Skill and chapter before any Editor mutation. Only narrow, isolated operations may start here directly.
+
 ## Discover and dispatch
 
 1. Identify the likely toolset from the request.

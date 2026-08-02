@@ -1,6 +1,6 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Execute and verify live Unreal Editor work through Codex-ready MCP workflows.",
   "author": {
     "name": "Community Maintainers"

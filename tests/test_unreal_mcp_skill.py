@@ -16,6 +16,16 @@ PREFLIGHT = (
 
 
 class UnrealMcpRecoveryPolicyTests(unittest.TestCase):
+    def test_new_level_work_routes_through_the_handbook_gate(self):
+        for required in (
+            "creates, rebuilds, dresses, or materially changes a level",
+            "do not use this low-level Skill as the first execution path",
+            "environment-level-design",
+            "its first level-work activation must announce",
+            "before any Editor mutation",
+        ):
+            self.assertIn(required, SKILL)
+
     def test_skill_routes_custom_port_recovery_to_operations(self):
         self.assertIn("non-default endpoint", SKILL)
         self.assertIn("Do not run the no-argument", SKILL)

@@ -91,8 +91,10 @@ If the local environment requires a custom endpoint, configure it as a project-s
 The workflow was live-tested with Unreal Engine 5.8: MCP initialization, all three meta-tools, toolset discovery, project Agent Skill discovery, current-level lookup, and a read-only actor query completed successfully. The published default remains Unreal's port `8000`.
 
 For environment work, ask Codex to implement or improve a level. With the Handbook installed,
-Codex establishes the design and validation contract before using the execution skill. The
-execution skill keeps the builder responsible for mutations and follows the current host or
+the first level-work Skill activation explicitly announces that the applicable Handbook Skills
+and chapters are mandatory, then Codex establishes the design and validation contract before
+using the execution skill. The execution skill keeps the builder responsible for mutations and
+follows the current host or
 project policy for any separate read-only reviewer. Without delegation, the same pass is
 explicitly labeled as a non-independent self-review. Evidence
 promotion requires a persistent camera, a unique local PNG, its paired `.evidence.json`

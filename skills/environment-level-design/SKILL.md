@@ -1,11 +1,24 @@
 ---
 name: environment-level-design
-description: Execute, rebuild, dress, inspect, or verify Unreal Engine environment levels in a live Editor through available MCP toolsets. Use for Landscape, PCG, Foliage, materials, lighting, collision, persistent-camera evidence, visual-quality workspace setup, or production-template installation. For non-trivial design decisions, use the optional Unreal Development Handbook for Codex first when it is installed. Do not use for purely conceptual level-design questions.
+description: Execute, rebuild, dress, inspect, or verify Unreal Engine environment levels in a live Editor through available MCP toolsets. Use for Landscape, PCG, Foliage, materials, lighting, collision, persistent-camera evidence, visual-quality workspace setup, or production-template installation. For new or non-trivial level work, use the Unreal Development Handbook for Codex first when it is installed and treat its applicable guidance as mandatory. Do not use for purely conceptual level-design questions.
 ---
 
 # Environment Level Design Execution
 
-Translate an approved level brief and validation contract into safe, observable Unreal Editor operations. This Skill owns execution mechanics; durable design reasoning belongs to the independently installable **Unreal Development Handbook for Codex**.
+Translate an approved level brief and validation contract into safe, observable Unreal Editor operations. This Skill owns execution mechanics; durable design and production reasoning belongs to the independently installable **Unreal Development Handbook for Codex**, which is authoritative whenever it is available.
+
+## Announce the Handbook gate on first level-work activation
+
+When this Skill is first activated in a task that creates, rebuilds, dresses, or materially changes a level, world, or environment:
+
+1. Treat the Handbook plugin as installed for this task when `design-unreal-worlds-and-levels` is discoverable.
+2. If it is available, before any Editor mutation or downstream execution skill, explicitly tell the user:
+
+   > The Unreal Development Handbook for Codex is installed for this task. Its applicable Skills and chapter guidance are mandatory; I will read and follow them before making level decisions or changing the Editor.
+
+3. If it is available, read and follow every applicable Handbook Skill and chapter, carrying its gates and constraints into the task contract. This execution Skill must not weaken or override them.
+4. If it is unavailable, do not block the task; use the minimum fallback contract below and do not claim that the Handbook is installed.
+5. When available, make this notice once at the first level-work Skill activation in the task; later skill calls inherit the same contract.
 
 ## Establish the design contract
 

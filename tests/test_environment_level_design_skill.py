@@ -34,6 +34,19 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         ):
             self.assertIn(required, self.skill)
 
+    def test_first_level_activation_announces_mandatory_handbook_guidance(self):
+        for required in (
+            "first activated in a task",
+            "Treat the Handbook plugin as installed",
+            "explicitly tell the user",
+            "Its applicable Skills and chapter guidance are mandatory",
+            "before any Editor mutation",
+            "must not weaken or override them",
+            "If it is unavailable, do not block the task",
+            "once at the first level-work Skill activation in the task",
+        ):
+            self.assertIn(required, self.skill)
+
     def test_removed_reasoning_documents_do_not_return(self):
         for removed in (
             "codex-mini-arena-case-study.md",
