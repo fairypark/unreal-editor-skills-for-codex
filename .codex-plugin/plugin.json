@@ -1,6 +1,6 @@
 {
   "name": "unreal-editor-skills-for-codex",
-  "version": "0.4.1",
+  "version": "0.4.2+codex.20260803090424",
   "description": "Execute and verify live Unreal Editor work through Codex-ready MCP workflows.",
   "author": {
     "name": "Community Maintainers"
@@ -15,6 +15,7 @@
     "blueprints",
     "level-design",
     "landscape",
+    "building-grounding",
     "environment-art",
     "visual-quality",
     "automation",
@@ -35,7 +36,8 @@
     "defaultPrompt": [
       "Inspect the open level or verify a marketplace import without disturbing it.",
       "Design an AI-callable Unreal toolset with tests.",
-      "Apply an approved environment design and verify it with persistent-camera evidence."
+      "Apply an approved environment design and verify it with persistent-camera evidence.",
+      "Ground a building on sloped terrain by checking all four base corners."
     ]
   },
   "mcpServers": "./.mcp.json"

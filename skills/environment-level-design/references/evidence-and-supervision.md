@@ -15,6 +15,13 @@ When `VisualEvidenceExtensionToolset` is available:
 
 The receipt must bind the persistent camera identity and role, world, transform, view and post-process state, FOV, dimensions, byte count, capture times, file modification time, settlement state, and 64-character SHA-256 digest.
 
+## Gameplay-camera authority
+
+- Read the project's actual player tracking camera before creating gameplay-visibility evidence. Record its height above local ground and FOV, including the representative state or mode when gameplay changes either value.
+- Configure fixed arrival, route, landmark, reverse, building-scale, and typology cameras from that height-and-FOV contract. Preserve the local-ground relationship across elevation changes; do not reuse an arbitrary world Z.
+- Label high overview or bird's-eye cameras `DIAGNOSTIC_ONLY`. Use them for zone, route, water-crossing, footprint, and marker-coverage audits only; never use them to approve player visibility, landmark readability, scale, or typology.
+- Reject a gameplay-visibility packet when its receipt does not match the recorded player-camera height and FOV or when overview-only evidence is offered as acceptance proof.
+
 ## Handoff-time verification
 
 Immediately before review, call `VerifyEvidenceForSupervision` with the capture-returned PNG and receipt hashes as external trust anchors. Reject missing, stale, jointly rewritten, mismatched, thumbnail-sized, or otherwise invalid pairs. Successful verification proves artifact integrity at handoff time; it does not prove visual quality.

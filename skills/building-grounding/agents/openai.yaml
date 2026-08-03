@@ -1,0 +1,4 @@
+interface:
+  display_name: "Four-Corner Building Grounding"
+  short_description: "Ground buildings on sloped terrain"
+  default_prompt: "Use $building-grounding to place or repair a building so all four load-bearing base corners contact the trusted terrain surface, with a foundation fallback for non-planar ground."

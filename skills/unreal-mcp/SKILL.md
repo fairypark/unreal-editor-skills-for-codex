@@ -40,6 +40,16 @@ PASS`, then call `list_toolsets` and one read-only Unreal query to clear its
 - Check whether PIE is running when Editor-only asset operations behave unexpectedly; stop PIE before retrying.
 - Treat programmatic in-editor Python execution as privileged arbitrary code.
 
+## Route isolated building placement through grounding
+
+For a narrow operation that places, moves, rotates, duplicates, or otherwise
+adjusts a building, structure, foundation, slab, wall kit, or architecture
+asset against terrain, activate `$building-grounding` before the mutation. It
+must validate all four load-bearing base corners, even when the user has not
+reported floating geometry. A low-level transform or spawn success does not
+replace that grounding gate. For broader level work, route through
+`environment-level-design` first and let it invoke the same downstream Skill.
+
 ## Verify marketplace asset imports
 
 When another workflow downloads or adds Fab or other marketplace content:

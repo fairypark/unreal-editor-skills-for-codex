@@ -81,6 +81,84 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
         ):
             self.assertIn(required, self.skill)
 
+    def test_architecture_placement_requires_automatic_four_corner_routing(self):
+        for required in (
+            "$building-grounding",
+            "Mandatory building-grounding routing",
+            "before the first architecture mutation",
+            "every building Actor",
+            "all four load-bearing base",
+            "PCG",
+            "Blueprint construction script",
+        ):
+            self.assertIn(required, self.skill)
+
+    def test_area_composition_plan_is_a_blocking_preprototype_gate(self):
+        for required in (
+            "Mandatory Area Composition Plan preflight",
+            "between concept views and the first cube or graybox prototype",
+            "zone boundaries and stable IDs",
+            "terrain elevations and steps",
+            "primary circulation",
+            "rivers and bridges",
+            "building footprints and typology hierarchy",
+            "fixed validation cameras",
+            "Do not create the first cube",
+            "broad asset-placement batch",
+            "reconstructed from a blockout afterward",
+        ):
+            self.assertIn(required, self.skill)
+
+        for required in (
+            "Area Composition Plan preflight",
+            "plan ID or path",
+            "perform read-only inspection only",
+            "Reopen the plan gate",
+            "Area Composition Plan ID and version",
+        ):
+            self.assertIn(required, self.operations)
+
+    def test_typology_critical_layout_uses_axis_and_hard_failures(self):
+        for required in (
+            "matching building sizes alone does not pass",
+            "gate -> outer court -> middle gate -> central courtyard -> main hall axis",
+            "fortress- or castle-like silhouette is a hard failure",
+        ):
+            self.assertIn(required, self.skill)
+
+        for required in (
+            "Typology-critical layout checks",
+            "Do not approve a typology from width, length, height, or Actor bounds alone",
+            "dominant keep",
+            "return to the Area Composition Plan",
+        ):
+            self.assertIn(required, self.operations)
+
+    def test_zone_markers_persist_from_preprototype_through_asset_placement(self):
+        for required in (
+            "Mandatory zone-identification lifecycle",
+            "Before the first prototype geometry mutation",
+            "LD_ZONE_MARKER",
+            "numeric ID plus ASCII fallback",
+            "completion of production asset placement",
+            "all numeric IDs and ASCII fallbacks readable",
+            "player-scale reference",
+            "explicit cleanup step",
+            "do not retire markers as part of blockout cleanup",
+        ):
+            self.assertIn(required, self.skill)
+
+        for required in (
+            "Zone markers and scale evidence",
+            "stable zone registry",
+            "numeric review ID",
+            "active font supporting it",
+            "completed production asset placement",
+            "player-scale character or metric reference",
+            "zone-marker inventory",
+        ):
+            self.assertIn(required, self.operations)
+
     def test_landscape_pcg_and_collision_operations_are_concrete(self):
         for required in (
             "trusted terrain surface",
@@ -109,6 +187,23 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
             "jointly rewritten",
         ):
             self.assertIn(required, self.evidence)
+
+    def test_gameplay_visibility_uses_player_camera_not_overview(self):
+        for required in (
+            "project's actual player tracking camera",
+            "height above local ground and FOV",
+            "`DIAGNOSTIC_ONLY`",
+            "never use them to approve player visibility",
+            "overview-only evidence",
+        ):
+            self.assertIn(required, self.evidence)
+
+        for required in (
+            "project's actual player tracking camera",
+            "Label high overview or bird's-eye cameras `DIAGNOSTIC_ONLY`",
+            "never use them to approve player visibility",
+        ):
+            self.assertIn(required, self.skill)
 
     def test_supervisor_handoff_is_neutral_and_read_only(self):
         for required in (
