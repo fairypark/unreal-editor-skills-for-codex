@@ -31,6 +31,10 @@ For a new level, broad rebuild, or quality recovery:
 
 For a narrow operation, such as changing one Actor or checking collision, use the user's stated intent and define only the relevant postcondition.
 
+## Clarify intent before selecting execution details
+
+When an environment execution request leaves consequential design choices open, read [requirements-dialogue.md](references/requirements-dialogue.md) and its paired [Korean review version](references/requirements-dialogue.ko.md). Reuse the accepted brief and prior answers, explain a small set of feasible directions and a recommendation, and ask only about unresolved choices that change the current work. Feed the answers into the existing Handbook or fallback contract before selecting tools and parameters. A clear narrow operation needs only its relevant postcondition; do not restart concept discovery or infer approval from silence.
+
 ## Load only execution guidance
 
 - Read [editor-environment-operations.md](references/editor-environment-operations.md) for Landscape, terrain, water, materials, PCG, Foliage, transforms, collision, or batch changes.
