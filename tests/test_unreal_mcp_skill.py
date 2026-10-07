@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = (ROOT / "skills" / "unreal-mcp" / "SKILL.md").read_text(encoding="utf-8")
+NORMALIZED_SKILL = " ".join(SKILL.split())
 OPERATIONS = (
     ROOT / "skills" / "unreal-mcp" / "references" / "operations.md"
 ).read_text(encoding="utf-8")
@@ -25,6 +26,15 @@ class UnrealMcpRecoveryPolicyTests(unittest.TestCase):
             "before any Editor mutation",
         ):
             self.assertIn(required, SKILL)
+
+    def test_isolated_building_placement_routes_through_grounding(self):
+        for required in (
+            "$building-grounding",
+            "narrow operation",
+            "all four load-bearing base corners",
+            "A low-level transform or spawn success does not replace",
+        ):
+            self.assertIn(required, NORMALIZED_SKILL)
 
     def test_skill_routes_custom_port_recovery_to_operations(self):
         self.assertIn("non-default endpoint", SKILL)

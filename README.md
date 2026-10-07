@@ -32,6 +32,10 @@ codex plugin add unreal-development-handbook-for-codex@fairypark
 ## Included skills
 
 - `unreal-mcp`: inspect and mutate a live Unreal Editor safely.
+- `building-grounding`: place or repair building Actors on sloped terrain by
+  validating all four load-bearing base corners, with a foundation fallback for
+  non-planar ground. `environment-level-design` routes architecture placement
+  through this Skill automatically; it can also be invoked explicitly.
 - `create-toolset`: author AI-callable Unreal C++ or Python toolsets.
 - `unreal-skill`: create project- or plugin-specific Unreal Agent Skills.
 - `environment-level-design`: execute an approved level brief through live Landscape, PCG,
