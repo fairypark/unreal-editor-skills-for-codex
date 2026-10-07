@@ -20,21 +20,25 @@ For a task that creates, rebuilds, dresses, or materially changes a level, world
 
 The Codex host may namespace MCP tool names. Search for the three meta-tools rather than assuming an exact host prefix.
 
-If the meta-tools are absent or initialization fails, do not pretend the Editor is connected. Ask the user to start Unreal Editor and run `ModelContextProtocol.StartServer`, then read [references/setup.md](references/setup.md) if the project has not been configured.
+The connection may appear as `unreal-mcp-proxy` when the Engine's optional proxy is installed. It retains Unreal's native discovery and dispatch tools; use the configured connection rather than adding a duplicate direct HTTP server.
+
+Missing tools do not prove that the Editor is stopped. Check the configured direct or proxy connection and follow [references/operations.md](references/operations.md). A proxy can remain connected while Unreal is unavailable, and a client can retain a stale catalog after recovery. `unreal_mcp_status` reports the proxy's initialized upstream session state, not current reachability. Verify recovery with `list_toolsets` and a read-only Unreal query before mutations. Read [references/setup.md](references/setup.md) for first-time configuration or optional proxy installation.
 
 Before restarting an existing MCP server or working with a non-default endpoint, read [references/operations.md](references/operations.md). Resolve the configured Codex URL, the Unreal port setting, and the active listener as separate facts. Do not run the no-argument `ModelContextProtocol.StartServer` command against a custom-port project.
 
 Before the first mutation in a newly initialized task, run
 `scripts/check_endpoint.py --project-root <project-root>` when the project uses
-an HTTP MCP endpoint. Continue only when it reports `runtime_endpoint_verdict:
+a direct HTTP MCP endpoint. Continue only when it reports `runtime_endpoint_verdict:
 PASS`, then call `list_toolsets` and one read-only Unreal query to clear its
 `PENDING_LIST_TOOLSETS` mutation gate.
+
+For a STDIO proxy, the HTTP preflight script does not establish proxy readiness. Resolve its recorded upstream endpoint, verify the target Editor listener, and follow the proxy recovery checks in `references/operations.md` before mutations.
 
 ## Apply hard safety constraints
 
 - Save the affected level and assets before bulk changes and again after success.
 - Create a source-control checkpoint before multi-asset or difficult-to-undo operations.
-- Serialize every Unreal MCP call. The calls run on the game thread; never invoke them in parallel.
+- MCP accepts concurrent requests and synchronizes dispatch; asynchronous tools can overlap, and request order does not guarantee execution or completion order. Serialize dependent calls and mutations affecting the same asset or Editor state. Keep game-thread MCP calls sequential under this project's policy. Use parallel calls only for independent work when the tools explicitly support safe overlap and applicable project instructions permit it. Multiple agents sharing an Editor must coordinate conflicting changes.
 - Wait for C++ and shader compilation to finish. Use `LiveCodingToolset.CompileLiveCoding` for in-editor C++ recompilation and wait for its final result.
 - Check Blueprint, widget, material, and asset operation statuses even when no transport exception occurred.
 - Check whether PIE is running when Editor-only asset operations behave unexpectedly; stop PIE before retrying.
@@ -78,7 +82,7 @@ These in-editor Unreal Agent Skills are distinct from Codex `SKILL.md` files.
 
 ## References
 
-- Read [references/setup.md](references/setup.md) for first-time server setup and Codex configuration.
-- Read [references/operations.md](references/operations.md) for console commands and failure recovery.
+- Read [references/setup.md](references/setup.md) for first-time server setup, Codex configuration, and optional proxy installation.
+- Read [references/operations.md](references/operations.md) for console commands, proxy recovery, and connection failures.
 
 Use `$create-toolset` when adding AI-callable Unreal tools. Use `$unreal-skill` when authoring an in-editor Unreal Agent Skill.

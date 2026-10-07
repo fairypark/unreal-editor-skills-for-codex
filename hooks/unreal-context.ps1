@@ -47,7 +47,7 @@ elseif ($null -ne $uproject) {
 }
 $parts.Add("Prefer Unreal Engine conventions, including UObject patterns, UHT reflection, Slate, and project-local naming rules.")
 $parts.Add("Use the ``unreal-mcp`` skill for tasks that inspect or mutate the live Unreal Editor.")
-$parts.Add("Serialize Unreal MCP calls, save before bulk mutations, and verify every tool result.")
+$parts.Add("Keep Unreal game-thread MCP calls sequential; serialize dependent calls and mutations affecting the same state. Overlap only independent operations when the tools support it and project policy permits it. Save before bulk mutations and verify every tool result.")
 if (Test-Path -LiteralPath $codexConfig -PathType Leaf) {
     $parts.Add("A project-scoped ``.codex/config.toml`` is present.")
 }

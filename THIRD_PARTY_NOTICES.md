@@ -4,7 +4,7 @@ This project is derived from:
 
 - `EpicGames/unreal-engine-skills-for-claude-code-plugin`
 - https://github.com/EpicGames/unreal-engine-skills-for-claude-code-plugin
-- Upstream revision: `7e3b09bbf6d2984c155233f9d3de5fcf523d2d42`
+- Upstream revision: `a6aa73ada02a9fb1f5415bec491f9942c519b297`
 - Copyright (c) 2026 Epic Games, Inc.
 - Licensed under the MIT License reproduced in `LICENSE`.
 

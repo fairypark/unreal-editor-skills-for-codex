@@ -44,6 +44,8 @@ MCP tool inventory and connection state can be fixed at task initialization. Res
 
 ## Run the deterministic preflight
 
+Use this script for direct HTTP connections. It does not inspect a STDIO proxy's session or cached tool catalog; use the proxy recovery checks below for that transport.
+
 From the `unreal-mcp` skill directory, run:
 
 ```text
@@ -72,15 +74,30 @@ bEnableToolSearch=False
 
 Keep the default enabled for ordinary Codex use because it reduces initial context.
 
+## Proxy recovery
+
+With the optional proxy, Codex connects to `unreal-mcp-proxy` over STDIO while the proxy reconnects to Unreal. Keep that configured connection during normal Editor recovery rather than adding a second direct HTTP connection.
+
+- `unreal_mcp_status` reports whether the proxy holds an initialized upstream session. It does not test current reachability.
+- Visible tools may come from a cached catalog. Require a successful `list_toolsets` call and a read-only Unreal query before resuming mutations.
+- With no cached catalog and no upstream session, only `unreal_mcp_status` is exposed. After recovery the proxy sends `notifications/tools/list_changed`; the client must fetch `tools/list` again.
+- If the host keeps a status-only or stale catalog, use its reconnect or configuration-reload action if available. Otherwise start a new Codex task; restart the client if its MCP session is still stale. Client refresh is separate from the proxy's normal reconnection to Unreal.
+- Stopping an active proxy closes Codex's STDIO connection. `Transport closed` requires client reconnection; starting an unrelated proxy process does not repair it. Obtain authorization before stopping a proxy used by another active task.
+- Inspect the recorded upstream endpoint, the target Editor's MCP startup log and listener owner, and proxy stderr when calls fail. Multiple running Editors do not establish which one the proxy targets. Follow the installed Engine's `Extras/Proxy/README.md` for its transport limits.
+
+## Concurrent calls
+
+MCP accepts concurrent requests and handles dispatch synchronization. Asynchronous operations can overlap, so submission order is not an execution or completion guarantee. Serialize dependent work and mutations affecting the same asset or Editor state. Keep game-thread MCP calls sequential under the project policy. Parallel work requires independent operations, explicit tool support for safe overlap, and permission from applicable project instructions. Coordinate ownership when multiple agents share one Editor.
+
 ## Recovery matrix
 
 | Symptom | Recovery |
 |---|---|
-| Server absent or `list_toolsets` fails | Resolve the configured endpoint and active listener first. Use `ModelContextProtocol.StartServer` only for the compiled default port; follow the custom-port recovery sequence otherwise. |
+| Unreal tools are absent or `list_toolsets` fails | Check both direct and proxy configuration. Resolve the recorded endpoint and target Editor listener; follow Proxy recovery for a proxy connection. Use `ModelContextProtocol.StartServer` only for the compiled default port; follow custom-port recovery otherwise. |
 | Configured port already in use | Identify the owning process. If it is the target Unreal Editor, keep the port. If another process owns it, choose one new port, update both sides, and restart cleanly. |
 | Output Log switches from a custom port to the default | Treat recovery as failed. Save, close cleanly, and relaunch with explicit `-ModelContextProtocolStartServer -ModelContextProtocolPort=<port>` arguments. |
 | Listener is healthy but tools remain absent | Start a new Codex task so the MCP client and tool inventory initialize again. |
 | Expected toolset missing | Run `ModelContextProtocol.RefreshTools`; then verify the corresponding Unreal plugin is enabled. |
 | Calls hang or fail | Wait for compilation or level loading; stop PIE when using Editor-only tools. |
 | Docked context is empty | Dock the Codex surface inside a supported asset editor before querying docked context. |
-| Calls collide | Stop parallel execution and serialize all Unreal MCP calls. |
+| Concurrent calls produce conflicting results | Serialize dependent calls and mutations affecting the same state. Keep game-thread calls sequential; permit independent overlap only when tool support and project instructions allow it. |
