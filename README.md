@@ -75,7 +75,7 @@ maintenance contract.
 
 1. An Unreal Engine build that includes the `ModelContextProtocol` and `AllToolsets` plugins.
 2. Both plugins enabled in the target `.uproject`.
-3. Unreal Editor running with the server started:
+3. Unreal Editor running to execute live tools, with the server started:
 
    ```text
    ModelContextProtocol.StartServer
@@ -84,6 +84,12 @@ maintenance contract.
 The bundled MCP connection uses Unreal's default endpoint, `http://127.0.0.1:8000/mcp`.
 
 If the local environment requires a custom endpoint, configure it as a project-scoped override and keep the Unreal server endpoint and the effective Codex MCP URL in sync.
+
+### Optional proxy for Editor recovery
+
+Engine builds containing `Engine/Plugins/Experimental/ModelContextProtocol/Extras/Proxy` can use `unreal_mcp_proxy` to keep Codex's MCP session open while the Editor is unavailable and reconnect when it returns. The proxy retains Unreal's native tool definitions. A connected proxy or cached tool catalog does not prove live access; verify recovery with a read-only Unreal query.
+
+See [proxy setup for Codex](skills/unreal-mcp/references/setup.md#4-optional-configure-the-engine-proxy-for-codex) for the Engine installer and Codex TOML adaptation, and [proxy recovery](skills/unreal-mcp/references/operations.md#proxy-recovery) for status, stale catalogs, and reconnection. The bundled default remains direct HTTP; keep one active Unreal connection when opting into the proxy.
 
 ## Verify
 
@@ -107,7 +113,7 @@ filename alone.
 
 ## Safety
 
-MCP tools can modify live `UObject` state, assets, levels, and project files. Save and create a source-control recovery point before bulk operations. Keep Unreal MCP calls sequential, verify every result, and treat programmatic in-editor Python execution as privileged.
+MCP tools can modify live `UObject` state, assets, levels, and project files. Save and create a source-control recovery point before bulk operations. Keep game-thread MCP calls sequential and serialize dependent calls and mutations affecting the same state. MCP can synchronize concurrent requests, but independent overlap requires explicit tool support and permission from project policy; request order does not guarantee completion order. Verify every result and treat programmatic in-editor Python execution as privileged.
 
 ## Attribution
 
