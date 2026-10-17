@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "system_id": "coupled_meadow_ground_cover_v1",
+  "category": "substrate_and_vegetation",
+  "distribution": "dependency_free_system_contract",
+  "approval_transfer": "REVALIDATION_REQUIRED",
+  "status": "PENDING_PROJECT_INPUTS",
+  "intent": "Connect ground appearance and layered vegetation through versioned habitat data while preserving authored open areas and traversal exclusions.",
+  "required_inputs": [
+    "trusted terrain or support surface",
+    "source-admitted low, medium and accent cover roles appropriate to the concept",
+    "licensed or project-authored substrate material inputs",
+    "authoritative route, water, hardscape and gameplay exclusions",
+    "frozen comparison cameras and scene lighting"
+  ],
+  "shared_field_contract": {
+    "required_identity": ["field_id", "revision", "coordinate_frame", "units", "origin_policy", "extent", "seed_or_immutable_data", "authored_accents"],
+    "consumers": ["placement_probability", "optional_species_or_scale_mapping", "substrate_blend"],
+    "consumer_mapping": "Record each mapping separately; identical output masks are not required.",
+    "parity": "Compare actual consumer samples at shared positions and a predeclared tolerance. Matching equations alone do not establish parity.",
+    "stale_input_policy": "Do not regenerate or promote dependent outputs from an unknown or stale field revision."
+  },
+  "required_parameters": [
+    "source_role_mix_by_zone",
+    "source_scale_and_distance_ranges",
+    "colony_extent_and_transition_ranges_with_units",
+    "intentional_gap_and_exclusion_precedence",
+    "substrate_layer_response_curves",
+    "deterministic_seed_or_data_revision"
+  ],
+  "output_contract": {
+    "decorative_collision": "NoCollision during visual development; essential traversal remains separately validated",
+    "source_changes": "Recheck final footprint and relevant shape/surface/scene evidence",
+    "ground_color": "Keep layer-specific correction scoped to that layer before blending where the material model requires it",
+    "library_reuse": "Duplicate versioned sources, replace map inputs, and revalidate the new scope"
+  },
+  "hard_failures": [
+    "unintended uniform scatter or tiled colony repetition",
+    "source silhouette or reverse surface incompatible with its role",
+    "unintended fluorescent cover or dark backface bands",
+    "unintended green tint on bare substrate",
+    "invalid final mesh clearance or filled traversal void",
+    "unknown field revision or unverified cross-path parity claimed as passed"
+  ],
+  "promotion_evidence": [
+    "source shape and surface checks at intended scale and directions",
+    "bounded in-context canary and saved source readback",
+    "sample parity when separate field implementations are used",
+    "dense, sparse, contact, ordinary repetition and reverse scene views",
+    "applicable independent visual decision under the project rubric",
+    "separate target-platform, wind, performance and packaging checks when required"
+  ],
+  "non_defaults": ["source count", "species mix", "scatter density", "normal correction", "transmission", "lighting", "field dimensions", "capture backend"]
+}

@@ -42,6 +42,7 @@ Use this reference only for live Unreal Editor execution. Obtain the spatial and
 ## PCG, Foliage, and repeated systems
 
 - Inspect source meshes with their final materials and intended scale ranges before graph or Foliage setup.
+- For persistent vegetation defects or connected substrate coverage, follow [vegetation-and-ground-cover.md](vegetation-and-ground-cover.md). Separate saved-source shape, surface response, and scene checks; keep field identity and sample parity explicit across placement and material consumers.
 - Give each generator one responsibility and explicit path, building, water, sightline, and gameplay exclusions.
 - Prefer deterministic seeds for comparisons. Expose one candidate generation at a time and disable superseded components before capture.
 - After generation, record component or instance counts by responsibility, warnings, regeneration time, collision and overlap behavior, Navigation influence, coverage, and representative grounding checks.

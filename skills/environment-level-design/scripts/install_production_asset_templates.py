@@ -14,6 +14,8 @@ TEMPLATE_NAMES = (
     "ProductionAssetCatalog.template.json",
     "terrain-projected-gravel-route.system.json",
     "clustered-water-vegetation.system.json",
+    "meadow-ground-cover.system.json",
+    "environment-source-check.template.json",
 )
 
 

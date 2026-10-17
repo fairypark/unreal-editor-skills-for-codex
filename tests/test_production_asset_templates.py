@@ -37,7 +37,7 @@ class ProductionAssetTemplateTests(unittest.TestCase):
             root = Path(temporary)
             result = self.installer.install(root)
             self.assertEqual(result["status"], "INSTALLED")
-            self.assertEqual(len(result["installed"]), 3)
+            self.assertEqual(len(result["installed"]), 5)
             for path in result["installed"]:
                 self.assertTrue(Path(path).is_file())
             with self.assertRaises(FileExistsError):
