@@ -40,6 +40,7 @@ When an environment execution request leaves consequential design choices open, 
 - Read [editor-environment-operations.md](references/editor-environment-operations.md) for Landscape, terrain, water, materials, PCG, Foliage, transforms, collision, or batch changes.
 - Read [evidence-and-supervision.md](references/evidence-and-supervision.md) when capturing fixed-camera evidence or handing artifacts to an independent reviewer.
 - Read [production-asset-operations.md](references/production-asset-operations.md) when installing, adapting, or packaging the bundled dependency-free production contracts.
+- Read [vegetation-and-ground-cover.md](references/vegetation-and-ground-cover.md) for vegetation source failures or coupled substrate/placement fields, and [capture-fallback.md](references/capture-fallback.md) only for a documented capture exception. Their paired [Korean review](references/environment-reuse-review.ko.md) preserves the decision boundaries.
 - Read [visual-quality-onboarding.md](references/visual-quality-onboarding.md) only when creating or integrating a project-owned visual-quality workspace.
 
 ## Mandatory Area Composition Plan preflight

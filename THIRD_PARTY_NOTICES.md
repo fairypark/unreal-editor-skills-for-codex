@@ -12,4 +12,10 @@ Codex-specific modifications include the Codex plugin manifest, bundled MCP conf
 
 No Unreal Engine source code, Engine plugin binary, Epic logo, OpenAI logo, or Anthropic logo is included.
 
+The v0.4.5 environment source diagnosis, coupled substrate/vegetation contract,
+sample comparator, collection workflow, and conditional evidence fallback are
+Codex-specific extensions derived from a locally validated project case. They
+are not new Epic upstream guidance. The upstream revision above is unchanged;
+the extension distributes no project or marketplace UAssets or textures.
+
 Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. Codex and OpenAI are trademarks of OpenAI. Claude is a trademark of Anthropic. This community project is not affiliated with or endorsed by Epic Games, OpenAI, or Anthropic.

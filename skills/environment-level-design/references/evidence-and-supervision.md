@@ -17,6 +17,8 @@ The receipt must bind the persistent camera identity and role, world, transform,
 
 ## Gameplay-camera authority
 
+For a documented native capture failure, consult [capture-fallback.md](capture-fallback.md). It preserves project authority, original frames, camera/state identity, freshness and independent review while explicitly labeling weaker evidence; it cannot replace a required native trust property.
+
 - Read the project's actual player tracking camera before creating gameplay-visibility evidence. Record its height above local ground and FOV, including the representative state or mode when gameplay changes either value.
 - Configure fixed arrival, route, landmark, reverse, building-scale, and typology cameras from that height-and-FOV contract. Preserve the local-ground relationship across elevation changes; do not reuse an arbitrary world Z.
 - Label high overview or bird's-eye cameras `DIAGNOSTIC_ONLY`. Use them for zone, route, water-crossing, footprint, and marker-coverage audits only; never use them to approve player visibility, landmark readability, scale, or typology.

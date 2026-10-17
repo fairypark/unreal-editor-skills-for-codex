@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "record_id": null,
+  "status": "PENDING_EVIDENCE",
+  "candidate": {
+    "source_id": null,
+    "version_or_digest": null,
+    "role": null,
+    "material_and_override_identity": null,
+    "scale_range": null,
+    "view_distance_range_with_units": null,
+    "visible_direction_coverage": [],
+    "coverage_rationale": null
+  },
+  "checks": {
+    "shape": {"status": "NOT_RUN", "evidence": [], "inputs_digest": null},
+    "surface": {"status": "NOT_RUN", "evidence": [], "inputs_digest": null},
+    "in_context": {"status": "NOT_RUN", "evidence": [], "inputs_digest": null}
+  },
+  "canary": {
+    "baseline": null,
+    "target_ids": [],
+    "frozen_systems": [],
+    "changed_inputs": [],
+    "rollback": null
+  },
+  "revalidation": {
+    "reused_evidence": [],
+    "unchanged_input_proof": [],
+    "required_rechecks": [],
+    "independent_visual_authority": null
+  },
+  "scope_limits": ["source approval does not approve broad placement", "new context requires revalidation", "wind, performance and package readiness require their own evidence"],
+  "library": {
+    "dependency_class": null,
+    "source_path": null,
+    "destination_path": null,
+    "dependency_manifest": null,
+    "source_visual_evidence": [],
+    "copy_verification": null,
+    "map_specific_inputs_to_replace": [],
+    "new_context_approval": "NOT_GRANTED"
+  }
+}
