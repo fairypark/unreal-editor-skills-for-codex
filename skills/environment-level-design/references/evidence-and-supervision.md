@@ -49,6 +49,26 @@ Do not supply the intended verdict or builder self-score. Ask the reviewer for t
 
 If independent delegation is unavailable, perform a separate comparison pass and label it `self-review; not independently supervised`.
 
+## Mandatory blockout fidelity loop
+
+For the blockout promotion gate, independent delegation is mandatory rather than optional. A self-review may identify defects but cannot set `BLOCKOUT_REFERENCE_FIDELITY_REVIEW` to `PASS` or unlock a representative slice, full layout, production meshing, or dressing. If the separate reviewer cannot run, keep the gate `PENDING_EVIDENCE` and report the delay immediately.
+
+Build each immutable packet from:
+
+- the applicable approved source references, including raw concept art and floor plan when required by the contract, with exact IDs, versions, crops or pages, approval and authority scopes; retain predeclared `NOT_APPLICABLE` decisions and never use them to waive missing required evidence;
+- the execution trace: Handbook Stage 2a when available, otherwise the fallback plan-feature trace binding source and plan versions, feature and zone IDs, planned rules and tolerances, mutation scope, realized measurements, results, and unresolved deviations;
+- verified fixed overview captures for macro layout and the runtime-camera captures or route samples declared by the current Handbook or fallback contract for player-facing relationships; Handbook stage numbering is not a standalone prerequisite;
+- the project rubric, category floors, hard failures, prohibited readings, and camera-authority limits;
+- the previous equivalent packet, iteration ID, factual change scope, elapsed time, and builder-reported checks not run.
+
+Ask the reviewer to return only evidence-grounded findings: gate state, category results, hard failures, regressions, the weakest visible or spatial system, and one bounded next change. `PASS` requires the exact candidate to meet every applicable category floor with no hard failure and no unresolved mismatch among the applicable source-reference reading, floor-plan conformance, and runtime evidence. Evaluate concept-art categories only when the approved contract requires concept art. Relative improvement, aggregate score, Actor count, tool success, or a persuasive builder summary is insufficient.
+
+On `FAIL`, preserve the packet and candidate. The builder changes one major system, captures the same camera and runtime conditions, and submits a new immutable packet to the separate reviewer. Continue this repair-capture-review loop until `PASS`. Do not reveal prior reviewer prose, consensus, or a desired verdict when a fresh or panel review must remain blind under host or project policy.
+
+If repeated materially distinct repairs leave the same hard failure or show no credible convergence, stop broad mutation and produce a root-cause record separating implementation, asset or proxy, terrain or route representation, tool, capture, evaluator, platform, and budget causes from conflicting, underspecified, or infeasible concept-art and floor-plan requirements. Set `DESIGN_REVIEW_REQUIRED` only when the evidence supports reopening the source design; reopen the responsible Handbook stages when available, or the fallback contract, Area Composition Plan, and execution trace otherwise. Do not use redesign to excuse an implementation defect.
+
+Before the first review, record the iteration/time budget and expected capture and review latency. Immediately report any issue likely to materially delay the loop: reviewer unavailability, timeouts, unstable Editor or streaming state, invalid receipts, changed cameras, unresolved source conflicts, missing assets or representation capability, repeated no-improvement, or projected budget overrun. Include cause, impact, current gate and downstream lock, elapsed attempts, safe work that remains possible, recovery options, and any owner decision required. Do not wait until the budget expires before reporting.
+
 ## Rendered acceptance evidence
 
 When a project requires Movie Render Queue or Movie Render Graph output, use a reusable project-owned beauty configuration and enable `Render Warm Up Frames`. Record the configuration asset and output paths. Keep Object ID and other diagnostic passes separate from beauty evidence.
