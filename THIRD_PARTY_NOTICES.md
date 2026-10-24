@@ -18,4 +18,10 @@ Codex-specific extensions derived from a locally validated project case. They
 are not new Epic upstream guidance. The upstream revision above is unchanged;
 the extension distributes no project or marketplace UAssets or textures.
 
+The v0.4.6 approved-plan execution, scoped blockout replacement, independent
+review, and observation-lighting guidance are also Codex-specific extensions.
+Repository validation uses official OpenAI validator scripts fetched from a
+pinned public revision; those scripts are not bundled in this plugin. The Epic
+upstream revision remains unchanged.
+
 Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. Codex and OpenAI are trademarks of OpenAI. Claude is a trademark of Anthropic. This community project is not affiliated with or endorsed by Epic Games, OpenAI, or Anthropic.

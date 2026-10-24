@@ -4,8 +4,8 @@ Use this reference only for live Unreal Editor execution. Obtain the spatial and
 
 ## Area Composition Plan preflight
 
-- Resolve the plan artifact and workflow record before discovering mutation tools. Record plan ID or path, version, source concept, status, reviewer or approver, and rollback target.
-- Validate zone boundaries and stable IDs, terrain elevations and steps, primary circulation, rivers and bridges, building footprints and typology hierarchy, and fixed validation cameras. Treat each as a required field, not optional illustration detail.
+- Resolve the plan artifact and workflow record before discovering mutation tools. Record plan ID or path, version, applicable source-reference lineage, status, reviewer or approver, and rollback target. Carry the contract's predeclared reference applicability; absent required evidence is not `NOT_APPLICABLE`.
+- Validate zone boundaries and stable IDs, terrain elevations and steps, primary circulation, rivers and bridges, building footprints and typology hierarchy, and fixed validation cameras. Require each applicable field and record approved `NOT_APPLICABLE` decisions for absent systems before work.
 - When the plan is missing, incomplete, retrospective, or not `PASS`, perform read-only inspection only. Do not create cube or graybox geometry, terrain blockout, architecture proxies, or broad asset batches.
 - Recheck affected plan entries before a batch that changes terrain height, route topology, water crossings, building footprints, typology, or fixed cameras. Reopen the plan gate rather than silently diverging.
 
@@ -32,9 +32,19 @@ Use this reference only for live Unreal Editor execution. Obtain the spatial and
 - For a palace, verify the gate -> outer court -> middle gate -> central courtyard -> main hall axis and the hierarchy of open courts and supporting halls. Record a hard failure if the result reads as a fortress or castle through a dominant keep, tower-like blocks, monolithic plinth, or continuous high defensive wall.
 - On typology failure, stop architecture duplication and broad dressing, preserve the failed candidate, and return to the Area Composition Plan.
 
+## Blockout primitive visual retirement
+
+- Before representative-slice production work, declare the candidate boundary and inventory every blockout cube or primitive that can contribute to its acceptance views or runtime states. Record Actor or component identity, zone, plan feature, execution trace entry (Handbook Stage 2a when available, otherwise the fallback plan-feature trace), current material and render state, collision or support role, and intended disposition. Assign only `REPLACE`, `RETIRE`, or `RETAIN_INTERNAL_SKELETON`. Once the independent fidelity gate passes, permit bounded replacement and meshing to satisfy this gate; require retirement `PASS` before candidate acceptance or expansion. Repeat for each expanded scope and the entire requested level before full-level acceptance.
+- For `REPLACE`, copy the approved transform, bounds, orientation, route-clearance intent, and trace IDs to the production visual asset or authored system, then disable or remove the superseded proxy after postcondition checks. For `RETIRE`, verify that no collision, navigation, support, measurement, or traceability duty remains before removal.
+- For `RETAIN_INTERNAL_SKELETON`, record the exact retained duty and owner. Disable runtime visual contribution where the duty permits, or fully enclose the primitive with approved production geometry; re-read effective component visibility, hidden-in-game, shadow, reflection, collision, and saved-state properties after the change.
+- Do not assign a production finish material to an exposed blockout cube, use its face as a decal or final lighting surface, or treat material replacement as production meshing. The visible surface must come from an approved production asset or authored visual system.
+- Test the exact candidate through the runtime camera declared by the current Handbook or fallback contract, fixed overview, reverse and contact views, representative streaming, LOD or HLOD, visibility, occlusion, and level-variant states. Fail on any exposed primitive face, gap, seam, z-fighting, shadow, reflection, or silhouette contribution.
+- Record `BLOCKOUT_CUBE_VISUAL_RETIREMENT=PASS` only after the declared candidate's complete disposition inventory and visual-absence checks pass. Out-of-scope blockout may remain only when it cannot contribute to that candidate's acceptance evidence; it is not approved for production by the slice result. Preserve retained skeleton records during later collision or proxy-cleanup work; do not delete a spatial or support duty merely because its visual contribution is disabled.
+
 ## Materials, water, and lighting
 
 - Inspect current material assignments, layer info, parameter ownership, texture scale, and shader state before replacement.
+- Reject any material batch whose purpose is to turn an exposed blockout cube into a production surface; route it through blockout primitive replacement or retirement instead.
 - Apply Landscape or water changes to a bounded test area first. Verify layer coverage, seams, banks, translucency, reflections, and collision intent.
 - Change one major lighting or atmosphere variable at a time. Compare the same persistent cameras after temporal rendering settles.
 - Treat shader compilation, streaming, or asset compilation as pending state. Do not capture acceptance evidence until they complete.

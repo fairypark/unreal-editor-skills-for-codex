@@ -96,7 +96,7 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
     def test_area_composition_plan_is_a_blocking_preprototype_gate(self):
         for required in (
             "Mandatory Area Composition Plan preflight",
-            "between concept views and the first cube or graybox prototype",
+            "after the approved source references and before the first cube or graybox prototype",
             "zone boundaries and stable IDs",
             "terrain elevations and steps",
             "primary circulation",
@@ -117,6 +117,113 @@ class EnvironmentLevelDesignSkillTests(unittest.TestCase):
             "Area Composition Plan ID and version",
         ):
             self.assertIn(required, self.operations)
+
+    def test_blank_level_lighting_waits_for_approved_design(self):
+        for required in (
+            "Gate blank-level observation lighting behind approved design",
+            "created, saved, and inspected read-only earlier",
+            "do not spawn or modify",
+            "Stage 1 Concept",
+            "Stage 2 Area Composition Plan",
+            "contract and Area Composition Plan",
+            "Keep the lighting mutation read-only",
+            "Post-design blank-level observation baseline",
+            "record and preserve its World Partition",
+            "Do not change partition",
+        ):
+            self.assertIn(required, self.skill)
+
+        self.assertLess(
+            self.skill.index("### 0. Area Composition Plan and design preflight"),
+            self.skill.index("### 0a. Post-design blank-level observation baseline"),
+        )
+
+    def test_blockout_enforces_the_approved_floor_plan_spatial_lock(self):
+        for required in (
+            "Enforce the approved floor plan during blockout",
+            "exact approved version becomes the spatial mutation lock",
+            "plan feature ID",
+            "Reject unmapped or freehand placement",
+            "re-query the realized transforms",
+            "stop all subsequent blockout placement",
+            "Do not backfit the plan",
+            "post-batch spatial-conformance audit",
+            "fallback plan-feature trace",
+            "it does not depend on Handbook stage numbering",
+        ):
+            self.assertIn(required, self.skill)
+
+        self.assertLess(
+            self.skill.index("## Enforce the approved floor plan during blockout"),
+            self.skill.index("### 1. Playable skeleton"),
+        )
+
+    def test_blockout_requires_independent_reference_fidelity_iteration(self):
+        for required in (
+            "Gate blockout promotion through independent supervision",
+            "BLOCKOUT_REFERENCE_FIDELITY_REVIEW=PASS",
+            "separate read-only independent supervisor",
+            "self-review cannot promote the blockout",
+            "DESIGN_REVIEW_REQUIRED",
+            "Report any material delay to the user immediately",
+            "Do not wait for the budget to expire",
+            "### 1a. Independent blockout reference-fidelity gate",
+        ):
+            self.assertIn(required, self.skill)
+
+        for required in (
+            "Mandatory blockout fidelity loop",
+            "raw concept art and floor plan when required by the contract",
+            "never use them to waive missing required evidence",
+            "Handbook stage numbering is not a standalone prerequisite",
+            "same camera and runtime conditions",
+            "root-cause record",
+            "Do not wait until the budget expires before reporting",
+        ):
+            self.assertIn(required, self.evidence)
+
+        self.assertLess(
+            self.skill.index("### 1a. Independent blockout reference-fidelity gate"),
+            self.skill.index("### 2. Representative slice"),
+        )
+
+    def test_blockout_cubes_remain_internal_and_non_visual(self):
+        for required in (
+            "Retire blockout cubes from the production visual surface",
+            "`REPLACE`, `RETIRE`, or `RETAIN_INTERNAL_SKELETON`",
+            "non-visual internal skeleton",
+            "Do not expose a face",
+            "assign a production finish material",
+            "BLOCKOUT_CUBE_VISUAL_RETIREMENT=PASS",
+            "Any visible or material-finished blockout primitive",
+            "### 1b. Blockout-cube visual-retirement gate",
+            "Material assignment never promotes blockout geometry",
+            "Permit bounded replacement and meshing after Stage 1a passes",
+            "do not require whole-level retirement before making the first slice",
+            "before accepting the slice or expanding its systems",
+        ):
+            self.assertIn(required, self.skill)
+
+        for required in (
+            "Blockout primitive visual retirement",
+            "current material and render state",
+            "fully enclose the primitive with approved production geometry",
+            "hidden-in-game",
+            "Do not assign a production finish material to an exposed blockout cube",
+            "treat material replacement as production meshing",
+            "Reject any material batch",
+            "BLOCKOUT_CUBE_VISUAL_RETIREMENT=PASS",
+        ):
+            self.assertIn(required, self.operations)
+
+        self.assertLess(
+            self.skill.index("### 1a. Independent blockout reference-fidelity gate"),
+            self.skill.index("### 1b. Blockout-cube visual-retirement gate"),
+        )
+        self.assertLess(
+            self.skill.index("### 1b. Blockout-cube visual-retirement gate"),
+            self.skill.index("### 2. Representative slice"),
+        )
 
     def test_typology_critical_layout_uses_axis_and_hard_failures(self):
         for required in (

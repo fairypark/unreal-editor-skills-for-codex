@@ -105,8 +105,9 @@ the first level-work Skill activation explicitly announces that the applicable H
 and chapters are mandatory, then Codex establishes the design and validation contract before
 using the execution skill. The execution skill keeps the builder responsible for mutations and
 follows the current host or
-project policy for any separate read-only reviewer. Without delegation, the same pass is
-explicitly labeled as a non-independent self-review. Evidence
+project policy for any separate read-only reviewer. A self-review is explicitly labeled
+non-independent and cannot approve blockout promotion; that gate remains pending until
+a separate reviewer can evaluate the declared references and runtime evidence. Evidence
 promotion requires a persistent camera, a unique local PNG, its paired `.evidence.json`
 receipt, and successful handoff-time verification rather than the existence of a screenshot
 filename alone.
@@ -116,6 +117,21 @@ filename alone.
 The environment skill includes [vegetation source and substrate checks](skills/environment-level-design/references/vegetation-and-ground-cover.md), [versioned source-collection operations](skills/environment-level-design/references/production-asset-operations.md), and a [conditional capture fallback](skills/environment-level-design/references/capture-fallback.md). Read the paired [Korean review](skills/environment-level-design/references/environment-reuse-review.ko.md) for the same decision boundaries. The five installable JSON templates include a coupled meadow system and a source-check record. The scalar sample comparator validates only recorded field samples; it does not certify GPU provenance or visual quality.
 
 These are Codex-specific extensions. No project meshes, textures, UAssets, or marketplace content are bundled, and previous visual approval does not transfer to another scene.
+
+For blockout production, the approved floor plan governs placement and post-batch checks.
+Independent reference-fidelity review precedes production conversion. Replace or retire
+visible blockout primitives within the declared representative-slice scope before accepting
+that slice, then repeat the checks as production coverage expands. Preserve the project's
+partition mode and intentional lighting; new blank-level observation lighting follows the
+approved design contract. The same workflow has a standalone contract when the Handbook
+is unavailable.
+
+## Repository validation
+
+Pull requests and pushes to `main` run Windows regression tests and the official Plugin
+and Skill validators. See [validation instructions](docs/VALIDATION.md) for dependencies,
+the pinned validator source, local commands, and the distinction between package checks
+and live Unreal evidence.
 
 ## Safety
 
