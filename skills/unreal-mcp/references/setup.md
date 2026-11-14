@@ -74,9 +74,7 @@ A minimal manual entry is:
 url = "http://127.0.0.1:8000/mcp"
 ```
 
-When a project uses a custom endpoint, override the same server name in the target project's `.codex/config.toml` and keep it matched to the Unreal server. Do not publish machine-specific endpoints in the plugin defaults.
-
-Do not keep duplicate plugin-bundled and project-scoped definitions if the host reports a name collision.
+For a custom endpoint, set the project entry above to the Editor's URL. When the plugin also supplies an active direct server, disable the bundled entry using the plugin-specific `enabled = false` setting in step 4. Verify that the current session uses the project entry before editing.
 
 ## 4. Optional: configure the Engine proxy for Codex
 
@@ -115,6 +113,17 @@ Reload the client configuration once after installation and start a new Codex ta
 To restore direct access, run the same Engine command with `uninstall`, restore the direct Codex URL from `_upstreamEntry`, remove or disable the proxy entry, and re-enable the direct server. Reload the client configuration afterward.
 
 The proxy's cached catalog is scoped to the configuration path, proxy path, Engine build identity, and client protocol version. A cached catalog or connected proxy does not prove live access. Follow [operations.md](operations.md#proxy-recovery) and the installed Engine's `Extras/Proxy/README.md` for cache behavior and transport limits.
+
+## 5. Run several editors at once
+
+Each Unreal Editor serves MCP on `ServerPortNumber`, `8000` by default. A second Editor on the same machine cannot bind the same port, and a client configured for that port can silently reach the first Editor. Give each project or engine workspace a fixed port:
+
+1. Choose one stable port per workspace (for example, `8100`, `8101`, ...). Do not rely on an Editor selecting a free port; a client continues to talk to whatever process owns its configured port.
+2. Set `ServerPortNumber` in that project's `EditorPerProjectUserSettings.ini` (step 2), or launch with `-ModelContextProtocolPort=<port>`. The direct HTTP preflight can verify an override recorded in the project's startup log.
+3. Point the workspace's Codex entry in `.codex/config.toml` at the same `http://127.0.0.1:<port>/mcp` URL. If using the Engine proxy, use a project-owned `.mcp.json` with that same endpoint as the proxy installer input (step 4), then copy the generated STDIO entry into that workspace's Codex TOML.
+4. Start each Codex task from its own workspace so it loads the intended project-scoped configuration. Keep exactly one active direct or proxy Unreal connection for that workspace.
+
+Before mutations, identify which Editor answered by following [Identify the editor](operations.md#identify-the-editor) in `operations.md`.
 
 ## Verify
 

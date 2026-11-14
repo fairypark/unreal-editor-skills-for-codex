@@ -1,3 +1,4 @@
+import json
 import unittest
 from pathlib import Path
 
@@ -17,6 +18,11 @@ PREFLIGHT = (
 
 
 class UnrealMcpRecoveryPolicyTests(unittest.TestCase):
+    def test_public_bundle_uses_documented_engine_endpoint(self):
+        manifest = json.loads((ROOT / ".codex-plugin/plugin.json").read_text(encoding="utf-8"))
+        bundled = json.loads((ROOT / manifest["mcpServers"]).read_text(encoding="utf-8"))
+        self.assertEqual("http://127.0.0.1:8000/mcp", bundled["mcpServers"]["unreal-mcp"]["url"])
+
     def test_new_level_work_routes_through_the_handbook_gate(self):
         for required in (
             "creates, rebuilds, dresses, or materially changes a level",

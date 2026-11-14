@@ -15,7 +15,7 @@
 Treat these as three independent facts that must agree:
 
 1. the Codex MCP URL in `.mcp.json` or `.codex/config.toml`;
-2. `ServerPortNumber` and `ServerUrlPath` in Unreal settings;
+2. the port and path in Unreal settings, including any port override recorded for this launch;
 3. the address and port of the live listener owned by the Unreal Editor process.
 
 Do not infer the live port from configuration alone. Verify the Unreal Output Log and the operating-system listener before reporting recovery.
@@ -52,9 +52,19 @@ From the `unreal-mcp` skill directory, run:
 python scripts/check_endpoint.py --project-root <project-root>
 ```
 
-The script compares the discovered Codex HTTP URL, the per-user Unreal MCP
+For automatic discovery, the script checks the project's `.codex/config.toml`,
+then its `.mcp.json`, then the bundled `.mcp.json`. It uses the first file
+that configures the Unreal connection. An active proxy or a disabled direct
+entry cannot supply a direct URL. To check known active files explicitly, pass
+`--client-config <path>` for each. Their direct URLs must agree. For a
+renamed direct Unreal server, pass its exact name with `--server-name <name>`.
+The URL selected from disk still requires a read-only check through the session.
+
+The script compares the selected Codex HTTP URL, the per-user Unreal MCP
 settings, the latest project log, the active TCP listener, and its owning
-process. Treat a nonzero exit or `runtime_endpoint_verdict: FAIL` as a hard
+process. A `-ModelContextProtocolPort=<port>` recorded on the latest launch's
+command line takes precedence over the saved port. The preflight still checks
+the startup and listener messages for that port. Treat a nonzero exit or `runtime_endpoint_verdict: FAIL` as a hard
 stop. Do not restart the server merely because the preflight failed; resolve
 the reported mismatch by evidence.
 
@@ -85,6 +95,14 @@ With the optional proxy, Codex connects to `unreal-mcp-proxy` over STDIO while t
 - Stopping an active proxy closes Codex's STDIO connection. `Transport closed` requires client reconnection; starting an unrelated proxy process does not repair it. Obtain authorization before stopping a proxy used by another active task.
 - Inspect the recorded upstream endpoint, the target Editor's MCP startup log and listener owner, and proxy stderr when calls fail. Multiple running Editors do not establish which one the proxy targets. Follow the installed Engine's `Extras/Proxy/README.md` for its transport limits.
 
+## Identify the editor
+
+When several Editors are running, confirm which one answers before making changes.
+
+- Recent Engine builds include instance metadata in the `initialize` result and in `server/discover` on protocol `2026-07-28`, under `_meta["com.epicgames.unrealengine/instance"]`: `processId`, `engineVersion`, `engineBranch`, `engineChangelist`, `projectName`, `engineDirectory`, `projectDirectory`, and `projectFile`. Probe the configured endpoint and compare `projectDirectory` or `projectFile` with the workspace you expect.
+- A separate endpoint probe can reach the expected Editor while a Codex session still uses older settings. Confirm the workspace in a read-only query through the current session. If an in-Editor Python execution tool is available, run `import os; print(os.getpid())` through that connection and compare the result with the verified Editor PID.
+- Without instance metadata, find the process that owns the configured port. Editors can share one executable path. Check the process's project argument or query the project directory through the session. For a proxy, also inspect its recorded upstream endpoint. If the session's target remains ambiguous, resolve it before making changes.
+
 ## Concurrent calls
 
 MCP accepts concurrent requests and handles dispatch synchronization. Asynchronous operations can overlap, so submission order is not an execution or completion guarantee. Serialize dependent work and mutations affecting the same asset or Editor state. Keep game-thread MCP calls sequential under the project policy. Parallel work requires independent operations, explicit tool support for safe overlap, and permission from applicable project instructions. Coordinate ownership when multiple agents share one Editor.
@@ -95,6 +113,7 @@ MCP accepts concurrent requests and handles dispatch synchronization. Asynchrono
 |---|---|
 | Unreal tools are absent or `list_toolsets` fails | Check both direct and proxy configuration. Resolve the recorded endpoint and target Editor listener; follow Proxy recovery for a proxy connection. Use `ModelContextProtocol.StartServer` only for the compiled default port; follow custom-port recovery otherwise. |
 | Configured port already in use | Identify the owning process. If it is the target Unreal Editor, keep the port. If another process owns it, choose one new port, update both sides, and restart cleanly. |
+| Several Editors may be running | Give each workspace a fixed, unique port and use **Identify the editor** to compare the returned project or process identity before mutations. |
 | Output Log switches from a custom port to the default | Treat recovery as failed. Save, close cleanly, and relaunch with explicit `-ModelContextProtocolStartServer -ModelContextProtocolPort=<port>` arguments. |
 | Listener is healthy but tools remain absent | Start a new Codex task so the MCP client and tool inventory initialize again. |
 | Expected toolset missing | Run `ModelContextProtocol.RefreshTools`; then verify the corresponding Unreal plugin is enabled. |
