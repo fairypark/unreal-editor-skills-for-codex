@@ -149,7 +149,7 @@ class UnrealMcpEndpointPreflightTests(unittest.TestCase):
         )
         result = self.inspect(client_configs=None)
         self.assertEqual("PASS", result["runtime_endpoint_verdict"])
-        self.assertEqual(str(self.workspace_config), result["client_configs"][0]["path"])
+        self.assertTrue(self.workspace_config.samefile(result["client_configs"][0]["path"]))
         self.assertEqual("PENDING_LIST_TOOLSETS", result["mutation_gate"])
 
     def test_toml_without_unreal_falls_back_to_project_json(self):
@@ -158,7 +158,7 @@ class UnrealMcpEndpointPreflightTests(unittest.TestCase):
         )
         result = self.inspect(client_configs=None)
         self.assertEqual("PASS", result["runtime_endpoint_verdict"])
-        self.assertEqual(str(self.client), result["client_configs"][-1]["path"])
+        self.assertTrue(self.client.samefile(result["client_configs"][-1]["path"]))
         self.assertNotIn("9000", json.dumps(result))
 
     def test_bundled_endpoint_used_when_project_has_no_unreal_config(self):
@@ -166,7 +166,7 @@ class UnrealMcpEndpointPreflightTests(unittest.TestCase):
         self.client.unlink()
         result = self.inspect(client_configs=None)
         self.assertEqual("PASS", result["runtime_endpoint_verdict"])
-        self.assertEqual(str(self.bundled), result["client_configs"][-1]["path"])
+        self.assertTrue(self.bundled.samefile(result["client_configs"][-1]["path"]))
 
     def test_disabled_direct_and_proxy_entries_cannot_fall_through_to_http(self):
         for config in (
