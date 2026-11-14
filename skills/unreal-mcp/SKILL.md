@@ -26,6 +26,8 @@ Missing tools do not prove that the Editor is stopped. Check the configured dire
 
 Before restarting an existing MCP server or working with a non-default endpoint, read [references/operations.md](references/operations.md). Resolve the configured Codex URL, the Unreal port setting, and the active listener as separate facts. Do not run the no-argument `ModelContextProtocol.StartServer` command against a custom-port project.
 
+When more than one Unreal Editor may be running, follow [Identify the editor](references/operations.md#identify-the-editor) and verify the target workspace through the current session before any mutation.
+
 Before the first mutation in a newly initialized task, run
 `scripts/check_endpoint.py --project-root <project-root>` when the project uses
 a direct HTTP MCP endpoint. Continue only when it reports `runtime_endpoint_verdict:

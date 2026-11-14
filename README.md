@@ -85,6 +85,8 @@ The bundled MCP connection uses Unreal's default endpoint, `http://127.0.0.1:800
 
 If the local environment requires a custom endpoint, configure it as a project-scoped override and keep the Unreal server endpoint and the effective Codex MCP URL in sync.
 
+If you run multiple Editors, assign a fixed port to each workspace and confirm the responding project and process in the current Codex session before editing. See [multi-Editor setup](skills/unreal-mcp/references/setup.md#5-run-several-editors-at-once) and [Editor identification](skills/unreal-mcp/references/operations.md#identify-the-editor).
+
 ### Optional proxy for Editor recovery
 
 Engine builds containing `Engine/Plugins/Experimental/ModelContextProtocol/Extras/Proxy` can use `unreal_mcp_proxy` to keep Codex's MCP session open while the Editor is unavailable and reconnect when it returns. The proxy retains Unreal's native tool definitions. A connected proxy or cached tool catalog does not prove live access; verify recovery with a read-only Unreal query.
